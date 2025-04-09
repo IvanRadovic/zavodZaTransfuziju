@@ -1,13 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import AppNavigation from "./src/navigation/AppNavigation";
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { Provider as PaperProvider } from 'react-native-paper';
 
+/*=========== NAVIGATION ============*/
+import AppNavigation from './src/navigation/AppNavigation';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-     <AppNavigation />
-    </View>
+    <PaperProvider>
+      <SafeAreaView style={styles.container}>
+        <AppNavigation />
+      </SafeAreaView>
+    </PaperProvider>
   );
 }
 
