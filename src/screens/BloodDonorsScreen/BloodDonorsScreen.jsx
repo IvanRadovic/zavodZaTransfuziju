@@ -4,7 +4,7 @@ import { ScrollView, Text, View } from 'react-native';
 import { styles } from './BloodDonorsScreen.style';
 
 /*=========== CONSTANTS ============*/
-import { bloodContent } from '../../constants/bloodContent';
+import { bloodDonors } from '../../constants/bloodDonors';
 
 /*=========== COMPONENTS ============*/
 import FAQItem from '../../components/ui/FAQItem/FAQItem';
@@ -24,7 +24,7 @@ const BloodDonorsScreen = () => {
         <Text style={{ ...textCenter, ...FontSizeBig }}>Vodič za davaoce</Text>
       </View>
       <ScrollView contentContainerStyle={{ ...pMediumSmall }}>
-        {bloodContent.map((item, index) => (
+        {bloodDonors.map((item, index) => (
           <FAQItem key={index} question={item.question} answer={item.answer} />
         ))}
       </ScrollView>

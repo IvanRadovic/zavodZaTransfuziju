@@ -1,4 +1,4 @@
-export const bloodContent = [
+export const bloodDonors = [
   {
     question: 'Ko može sve dati krvi?',
     answer: [
