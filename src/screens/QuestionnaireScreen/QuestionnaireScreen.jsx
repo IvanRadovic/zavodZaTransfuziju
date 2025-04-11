@@ -11,6 +11,7 @@ import QuestionView from '../../components/layout/QuestionView/QuestionView';
 
 /*=========== CONSTANTS ============*/
 import { basicQuestions, womenQuestions } from './constants';
+import Header from './components/header/Header';
 
 /**
  * @name QuestionnaireScreen
@@ -79,18 +80,7 @@ const QuestionnaireScreen = () => {
     <ScrollView
       contentContainerStyle={{ padding: 80, backgroundColor: '#f9f9f9' }}
     >
-      <View>
-        <Text style={styles.headerText}>POPUNJAVA DAVALAC KRVI</Text>
-        <View style={styles.descriptionContainer}>
-          <Text style={styles.descriptionText}>
-            Molimo Vas da pažljivo pročitate i iskreno odgovorite na svako
-            pitanje. Upitnik je važan zbog očuvanja Vašeg zdravlja i sigurnosti
-            transfuziološkog liječenja bolesnika. Vaši odgovori, kao i svi
-            ostali podaci o Vama su potpuno povjerljivi (ljekarska tajna) i
-            koristiće se samo za potrebe transfuziološkog službe.
-          </Text>
-        </View>
-      </View>
+      <Header styles={styles} />
 
       {basicQuestions.map((q) => (
         <QuestionView
@@ -115,6 +105,16 @@ const QuestionnaireScreen = () => {
           onSelect={handleAnswer}
         />
       ))}
+
+      <View>
+        <Text style={styles.headerText}>SAGLASNOST DAVAOCA</Text>
+        <View style={styles.descriptionContainer}>
+          <Text style={styles.descriptionText}>
+            Popunuio\la sam upitnik o davanju krvi ili komponente krvi i
+            izjavljujem sledceće:
+          </Text>
+        </View>
+      </View>
 
       <TouchableOpacity onPress={printAnketa} style={styles.sendSurveyButton}>
         <Text style={{ color: 'white', fontSize: 18, fontWeight: '600' }}>

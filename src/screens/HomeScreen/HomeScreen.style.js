@@ -4,13 +4,17 @@ import { pLarge, pvHuge } from '../../Style/Components/Paddings';
 import { mhMediumSmall, mhSmall } from '../../Style/Components/Margins';
 
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
+import img from '../../../assets/background/pozadina.png';
+import {
+  FlexDirectionRow,
+  gapMediumSmall,
+  spaceAround,
+} from '../../Style/Components/FlexAligments';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     ...bgMain,
-    paddingVertical: verticalScale(40),
-    paddingHorizontal: 20,
   },
   subContainer: {
     flex: 1,
@@ -18,24 +22,21 @@ export const styles = StyleSheet.create({
 
   optionContainer: {
     flex: 2,
-    paddingTop: verticalScale(12),
     ...bgMain,
     borderTopRightRadius: scale(40),
     borderTopLeftRadius: scale(40),
+    paddingHorizontal: 80,
+    paddingBottom: 50,
   },
   iconContainer: {
     flex: 1,
-    backgroundColor: '#fff',
+    ...FlexDirectionRow,
+    backgroundColor: '#FFDCDC',
     borderRadius: scale(20),
     justifyContent: 'center',
     alignItems: 'center',
+    gap: 25,
     padding: moderateScale(20),
     marginTop: verticalScale(20),
-    elevation: 5,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 3,
-    gap: 5,
   },
 });

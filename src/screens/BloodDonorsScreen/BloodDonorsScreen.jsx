@@ -21,7 +21,7 @@ const BloodDonorsScreen = () => {
   return (
     <View style={styles.container}>
       <View style={{ ...mvMedium }}>
-        <Text style={{ ...textCenter, ...FontSizeBig }}>Vodič za davaoce</Text>
+        <Text style={{ fontSize: 35, ...textCenter }}>Vodič za davaoce</Text>
       </View>
       <ScrollView contentContainerStyle={{ ...pMediumSmall }}>
         {bloodDonors.map((item, index) => (

@@ -7,6 +7,6 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     ...bgMain,
-    ...pvHuge,
+    padding: 50,
   },
 });

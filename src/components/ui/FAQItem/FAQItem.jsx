@@ -68,12 +68,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    padding: 10,
   },
   question: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'bold',
     color: '#222',
     flex: 1,
+    textAlign: 'center',
   },
   answerContainer: {
     marginTop: 12,
@@ -85,7 +87,7 @@ const styles = StyleSheet.create({
   },
   answerText: {
     flex: 1,
-    fontSize: 15,
+    fontSize: 20,
     color: '#444',
   },
 });

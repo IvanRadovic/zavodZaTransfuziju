@@ -7,7 +7,7 @@ const Variables = {
 
   /* --- Background Color --- */
   basic: '#CC444B',
-  main: '#F5F6FA',
+  main: '#FFF1F0',
   backgroundColor100: '#2F69CF', // -- shape of blue
   inputsColor: '#d6d6d6',
   primmaryColor200: '#B3B3B3', // -- dirty white 2
