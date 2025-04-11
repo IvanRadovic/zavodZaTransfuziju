@@ -1,35 +1,16 @@
 import React, { useState } from 'react';
 import { ScrollView, View, Text, TouchableOpacity, Alert } from 'react-native';
 import { Dimensions } from 'react-native';
-const { height, width } = Dimensions.get('window');
 import * as Print from 'expo-print';
 
 /*=========== STYLES ============*/
 import { styles } from './QuestionnaireScreen.style';
+
+/*=========== Component ============*/
 import QuestionView from '../../components/layout/QuestionView/QuestionView';
 
-const questions = [
-  {
-    id: 1,
-    question: 'Da li ste ranije davali krv?',
-    options: ['Da', 'Ne'],
-  },
-  {
-    id: 2,
-    question: 'Koliko često biste željeli da dajete krv?',
-    options: [
-      'Jednom godišnje',
-      'Dva puta godišnje',
-      'Više puta godišnje',
-      'Nisam siguran',
-    ],
-  },
-  {
-    id: 3,
-    question: 'Koji dan u nedelji vam najviše odgovara za davanje krvi?',
-    options: ['Ponedeljak', 'Srijeda', 'Petak', 'Vikendom'],
-  },
-];
+/*=========== CONSTANTS ============*/
+import { basicQuestions, womenQuestions } from './constants';
 
 /**
  * @name QuestionnaireScreen
@@ -47,7 +28,7 @@ const QuestionnaireScreen = () => {
     }));
   };
 
-  const allAnswered = questions.every((q) => answers[q.id]);
+  const allAnswered = basicQuestions.every((q) => answers[q.id]);
 
   const printAnketa = async () => {
     if (!allAnswered) {
@@ -96,21 +77,22 @@ const QuestionnaireScreen = () => {
 
   return (
     <ScrollView
-      contentContainerStyle={{ padding: 24, backgroundColor: '#f9f9f9' }}
+      contentContainerStyle={{ padding: 80, backgroundColor: '#f9f9f9' }}
     >
-      <Text
-        style={{
-          fontSize: 24,
-          fontWeight: '700',
-          marginBottom: 20,
-          color: '#880808',
-          textAlign: 'center',
-        }}
-      >
-        Upitnik za davaoce krvi
-      </Text>
+      <View>
+        <Text style={styles.headerText}>POPUNJAVA DAVALAC KRVI</Text>
+        <View style={styles.descriptionContainer}>
+          <Text style={styles.descriptionText}>
+            Molimo Vas da pažljivo pročitate i iskreno odgovorite na svako
+            pitanje. Upitnik je važan zbog očuvanja Vašeg zdravlja i sigurnosti
+            transfuziološkog liječenja bolesnika. Vaši odgovori, kao i svi
+            ostali podaci o Vama su potpuno povjerljivi (ljekarska tajna) i
+            koristiće se samo za potrebe transfuziološkog službe.
+          </Text>
+        </View>
+      </View>
 
-      {questions.map((q) => (
+      {basicQuestions.map((q) => (
         <QuestionView
           key={q.id}
           questionId={q.id}
@@ -120,16 +102,21 @@ const QuestionnaireScreen = () => {
         />
       ))}
 
-      <TouchableOpacity
-        onPress={printAnketa}
-        style={{
-          backgroundColor: '#880808',
-          paddingVertical: 16,
-          borderRadius: 16,
-          alignItems: 'center',
-          marginTop: 20,
-        }}
-      >
+      <View style={styles.descriptionContainer}>
+        <Text style={styles.descriptionText}>Za žene</Text>
+      </View>
+
+      {womenQuestions.map((q) => (
+        <QuestionView
+          key={q.id}
+          questionId={q.id}
+          question={q.question}
+          options={q.options}
+          onSelect={handleAnswer}
+        />
+      ))}
+
+      <TouchableOpacity onPress={printAnketa} style={styles.sendSurveyButton}>
         <Text style={{ color: 'white', fontSize: 18, fontWeight: '600' }}>
           Pošalji anketu
         </Text>

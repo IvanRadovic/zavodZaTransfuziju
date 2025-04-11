@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     ...bgMain,
     paddingVertical: verticalScale(40),
-    marginHorizontal: scale(16),
+    paddingHorizontal: 20,
   },
   subContainer: {
     flex: 1,
