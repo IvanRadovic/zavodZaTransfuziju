@@ -3,12 +3,14 @@ import { bgMain } from '../../Style/Components/BackgroundColors';
 import { pLarge, pvHuge } from '../../Style/Components/Paddings';
 import { mhMediumSmall, mhSmall } from '../../Style/Components/Margins';
 
+import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
+
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     ...bgMain,
-    ...pvHuge,
-    ...mhMediumSmall,
+    paddingVertical: verticalScale(40),
+    marginHorizontal: scale(16),
   },
   subContainer: {
     flex: 1,
@@ -16,19 +18,19 @@ export const styles = StyleSheet.create({
 
   optionContainer: {
     flex: 2,
-    paddingTop: 12,
+    paddingTop: verticalScale(12),
     ...bgMain,
-    borderTopRightRadius: 40,
-    borderTopLeftRadius: 40,
+    borderTopRightRadius: scale(40),
+    borderTopLeftRadius: scale(40),
   },
   iconContainer: {
     flex: 1,
     backgroundColor: '#fff',
-    borderRadius: 20,
+    borderRadius: scale(20),
     justifyContent: 'center',
     alignItems: 'center',
-    ...pLarge,
-    marginTop: 20,
+    padding: moderateScale(20),
+    marginTop: verticalScale(20),
     elevation: 5,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },

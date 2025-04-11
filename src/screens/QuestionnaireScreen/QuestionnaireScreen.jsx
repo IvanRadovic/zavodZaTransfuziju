@@ -49,10 +49,6 @@ const QuestionnaireScreen = () => {
 
   const allAnswered = questions.every((q) => answers[q.id]);
 
-  const handleSubmit = () => {
-    console.log('Odgovori:', answers);
-  };
-
   const printAnketa = async () => {
     if (!allAnswered) {
       Alert.alert('Molimo odgovorite na sva pitanja prije slanja.');
@@ -93,7 +89,6 @@ const QuestionnaireScreen = () => {
       await Print.printAsync({
         html: htmlContent,
       });
-      // Ovdje dodaj logiku za štampanje
     } catch (error) {
       Alert.alert('Greška', 'Štampanje nije uspjelo.');
     }

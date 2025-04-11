@@ -2,6 +2,7 @@ import { Text, View } from 'react-native';
 
 // /*========== STYLES ==========*/
 import { styles } from './PlateletDonorsScreen.style';
+import { fsMediumBiggest, textCenter } from '../../Style/Components/FontAdjust';
 
 /**
  * @name PlateletDonorsScreen
@@ -10,8 +11,10 @@ import { styles } from './PlateletDonorsScreen.style';
  */
 const PlateletDonorsScreen = () => {
   return (
-    <View>
-      <Text>Platelet Donors Screen</Text>
+    <View style={styles.container}>
+      <Text style={{ ...fsMediumBiggest, ...textCenter }}>
+        Pozivamo Vas da postanete dobrovoljni davalac
+      </Text>
     </View>
   );
 };
