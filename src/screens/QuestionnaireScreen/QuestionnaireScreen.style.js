@@ -1,4 +1,8 @@
 import { StyleSheet } from 'react-native';
+import {
+  FlexDirectionRow,
+  gapSmall,
+} from '../../Style/Components/FlexAligments';
 
 export const styles = StyleSheet.create({
   headerText: {

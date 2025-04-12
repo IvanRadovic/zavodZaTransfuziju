@@ -53,14 +53,14 @@ const QuestionnaireScreen = () => {
       <head>
         <meta charset="UTF-8" />
         <style>
-          body { font-family: Arial, sans-serif; padding: 20px; }
-          h1 { color: darkred; text-align: center; }
-          .question { margin-bottom: 20px; }
-          .answer { font-weight: bold; color: #444; }
+          body { font-family: Arial, sans-serif; padding: 10px; }
+          h2 { color: darkred; text-align: center; margin-bottom: 0px; }
+          .question { display:flex; gap:10px; font-size: 14px; align-items: center; margin-bottom: -10px }
+          .answer { font-weight: bold; color: #444; font-size: 12px; }
         </style>
       </head>
       <body>
-        <h1>Upitnik za davaoce krvi</h1>
+        <h2>Upitnik za davaoce krvi</h2>
         ${allQuestions
           .map((q) => {
             const selected = answers[q.id];
@@ -68,7 +68,7 @@ const QuestionnaireScreen = () => {
             return `
               <div class="question">
                 <p><strong>${q.question}</strong></p>
-                <p class="answer">Odgovor: ${selectedText}</p>
+                <p class="answer"> -  ${selectedText}</p>
               </div>
             `;
           })
@@ -90,32 +90,32 @@ const QuestionnaireScreen = () => {
       {currentStep === 1 && (
         <StepOne
           questions={basicQuestions}
-          onNext={goNext}
+          onNext={printAnketa}
           answers={answers}
           onAnswer={handleAnswer}
           styles={styles}
         />
       )}
-      {currentStep === 2 && (
-        <StepTwo
-          questions={womenQuestions}
-          onNext={goNext}
-          onBack={goBack}
-          answers={answers}
-          onAnswer={handleAnswer}
-          styles={styles}
-        />
-      )}
-      {currentStep === 3 && (
-        <StepThree
-          questions={confirmQuestions}
-          onBack={goBack}
-          answers={answers}
-          onAnswer={handleAnswer}
-          styles={styles}
-          onSubmit={printAnketa}
-        />
-      )}
+      {/*{currentStep === 2 && (*/}
+      {/*  <StepTwo*/}
+      {/*    questions={womenQuestions}*/}
+      {/*    onNext={goNext}*/}
+      {/*    onBack={goBack}*/}
+      {/*    answers={answers}*/}
+      {/*    onAnswer={handleAnswer}*/}
+      {/*    styles={styles}*/}
+      {/*  />*/}
+      {/*)}*/}
+      {/*{currentStep === 3 && (*/}
+      {/*  <StepThree*/}
+      {/*    questions={confirmQuestions}*/}
+      {/*    onBack={goBack}*/}
+      {/*    answers={answers}*/}
+      {/*    onAnswer={handleAnswer}*/}
+      {/*    styles={styles}*/}
+      {/*    onSubmit={printAnketa}*/}
+      {/*  />*/}
+      {/*)}*/}
     </View>
   );
 };
