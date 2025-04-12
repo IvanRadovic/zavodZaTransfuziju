@@ -10,8 +10,9 @@ import { styles } from './QuestionnaireScreen.style';
 import QuestionView from '../../components/layout/QuestionView/QuestionView';
 
 /*=========== CONSTANTS ============*/
-import { basicQuestions, womenQuestions } from './constants';
+import { basicQuestions, confirmQuestions, womenQuestions } from './constants';
 import Header from './components/header/Header';
+import ConfirmClientText from './components/confirmClientText/ConfirmClientText';
 
 /**
  * @name QuestionnaireScreen
@@ -106,15 +107,16 @@ const QuestionnaireScreen = () => {
         />
       ))}
 
-      <View>
-        <Text style={styles.headerText}>SAGLASNOST DAVAOCA</Text>
-        <View style={styles.descriptionContainer}>
-          <Text style={styles.descriptionText}>
-            Popunuio\la sam upitnik o davanju krvi ili komponente krvi i
-            izjavljujem sledceće:
-          </Text>
-        </View>
-      </View>
+      <ConfirmClientText />
+      {confirmQuestions.map((q) => (
+        <QuestionView
+          key={q.id}
+          questionId={q.id}
+          question={q.question}
+          options={q.options}
+          onSelect={handleAnswer}
+        />
+      ))}
 
       <TouchableOpacity onPress={printAnketa} style={styles.sendSurveyButton}>
         <Text style={{ color: 'white', fontSize: 18, fontWeight: '600' }}>

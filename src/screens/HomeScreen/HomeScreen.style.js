@@ -39,4 +39,9 @@ export const styles = StyleSheet.create({
     padding: moderateScale(20),
     marginTop: verticalScale(20),
   },
+
+  innerContent: {
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
 });

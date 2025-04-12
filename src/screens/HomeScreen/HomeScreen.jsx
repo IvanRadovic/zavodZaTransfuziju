@@ -1,28 +1,19 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  Image,
-  ImageBackground,
-  TouchableOpacity,
-} from 'react-native';
+import { View, Text, Image, ImageBackground } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import pozadina1 from '../../../assets/background/pozadina.png';
-import pozadina2 from '../../../assets/background/pozadina2.png';
-import pozadina3 from '../../../assets/background/pozadina_3.png';
-
+/*========== IMAGES ==========*/
 import kapljica from '../../../assets/background/kapljica.png';
 import srca from '../../../assets/background/srca.png';
 import upitnik from '../../../assets/background/anketa.png';
 
-import img from '../../../assets/zavod_logo.jpg';
-
 /*========== STYLES ==========*/
 import { styles } from './HomeScreen.style';
-import DefaultButton from '../../components/ui/DefaultButton/DefaultButton';
 import { flex2, flex3 } from '../../Style/Components/FlexAligments';
 import { fsMediumBig } from '../../Style/Components/FontAdjust';
+
+/*========== COMPONENTS ==========*/
+import DefaultButton from '../../components/ui/DefaultButton/DefaultButton';
 
 /**
  * @name HomeScreen
@@ -46,7 +37,7 @@ const HomeScreen = () => {
             source={kapljica}
             style={{ width: 60, height: 60, borderRadius: 5 }}
           />
-          <Text style={{ ...fsMediumBig }}>Davaoci krvi</Text>
+          <Text style={{ ...fsMediumBig, heigth: 300 }}>DAVAOCI KRVI</Text>
         </DefaultButton>
         <DefaultButton
           style={styles.iconContainer}
@@ -56,7 +47,9 @@ const HomeScreen = () => {
             source={srca}
             style={{ width: 60, height: 60, borderRadius: 5 }}
           />
-          <Text style={{ ...fsMediumBig }}>Davaoci trombocita</Text>
+          <Text style={{ ...fsMediumBig, heigth: 300 }}>
+            DAVAOCI TROMBOCITA
+          </Text>
         </DefaultButton>
         <DefaultButton
           style={styles.iconContainer}
@@ -66,7 +59,7 @@ const HomeScreen = () => {
             source={upitnik}
             style={{ width: 60, height: 60, borderRadius: 5 }}
           />
-          <Text style={{ ...fsMediumBig }}>Upitnik</Text>
+          <Text style={{ ...fsMediumBig }}>UPITNIK</Text>
         </DefaultButton>
       </View>
     </View>
