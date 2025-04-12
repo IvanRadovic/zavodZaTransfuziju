@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { View, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import * as Print from 'expo-print';
@@ -31,12 +31,12 @@ const QuestionnaireScreen = () => {
     ...confirmQuestions,
   ];
 
-  const handleAnswer = (questionId, selectedAnswer) => {
+  const handleAnswer = useCallback((questionId, selectedAnswer) => {
     setAnswers((prev) => ({
       ...prev,
       [questionId]: selectedAnswer,
     }));
-  };
+  }, []);
 
   const goNext = () => setCurrentStep((prev) => prev + 1);
   const goBack = () => setCurrentStep((prev) => prev - 1);
@@ -90,32 +90,32 @@ const QuestionnaireScreen = () => {
       {currentStep === 1 && (
         <StepOne
           questions={basicQuestions}
-          onNext={printAnketa}
+          onNext={goNext}
           answers={answers}
           onAnswer={handleAnswer}
           styles={styles}
         />
       )}
-      {/*{currentStep === 2 && (*/}
-      {/*  <StepTwo*/}
-      {/*    questions={womenQuestions}*/}
-      {/*    onNext={goNext}*/}
-      {/*    onBack={goBack}*/}
-      {/*    answers={answers}*/}
-      {/*    onAnswer={handleAnswer}*/}
-      {/*    styles={styles}*/}
-      {/*  />*/}
-      {/*)}*/}
-      {/*{currentStep === 3 && (*/}
-      {/*  <StepThree*/}
-      {/*    questions={confirmQuestions}*/}
-      {/*    onBack={goBack}*/}
-      {/*    answers={answers}*/}
-      {/*    onAnswer={handleAnswer}*/}
-      {/*    styles={styles}*/}
-      {/*    onSubmit={printAnketa}*/}
-      {/*  />*/}
-      {/*)}*/}
+      {currentStep === 2 && (
+        <StepTwo
+          questions={womenQuestions}
+          onNext={goNext}
+          onBack={goBack}
+          answers={answers}
+          onAnswer={handleAnswer}
+          styles={styles}
+        />
+      )}
+      {currentStep === 3 && (
+        <StepThree
+          questions={confirmQuestions}
+          onBack={goBack}
+          answers={answers}
+          onAnswer={handleAnswer}
+          styles={styles}
+          onSubmit={printAnketa}
+        />
+      )}
     </View>
   );
 };

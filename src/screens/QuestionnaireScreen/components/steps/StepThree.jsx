@@ -17,7 +17,7 @@ const StepThree = ({
 
   return (
     <View style={{ flex: 1 }}>
-      <ConfirmClientText />
+      <ConfirmClientText styles={styles} />
       <FlatList
         data={questions}
         keyExtractor={(item) => item.id.toString()}
