@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
-import { ScrollView, View, Text, TouchableOpacity, Alert } from 'react-native';
-import { Dimensions } from 'react-native';
+import { View, Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import * as Print from 'expo-print';
 
 /*=========== STYLES ============*/
 import { styles } from './QuestionnaireScreen.style';
 
-/*=========== Component ============*/
-import QuestionView from '../../components/layout/QuestionView/QuestionView';
-
 /*=========== CONSTANTS ============*/
 import { basicQuestions, confirmQuestions, womenQuestions } from './constants';
-import Header from './components/header/Header';
-import ConfirmClientText from './components/confirmClientText/ConfirmClientText';
+
+/*========== COMPONENTS ==========*/
+import StepThree from './components/steps/StepThree';
+import StepTwo from './components/steps/StepTwo';
+import StepOne from './components/steps/StepOne';
+import { bgMain } from '../../Style/Components/BackgroundColors';
 
 /**
  * @name QuestionnaireScreen
@@ -21,7 +22,14 @@ import ConfirmClientText from './components/confirmClientText/ConfirmClientText'
  * @constructor
  */
 const QuestionnaireScreen = () => {
+  const navigation = useNavigation();
   const [answers, setAnswers] = useState({});
+  const [currentStep, setCurrentStep] = useState(1);
+  const allQuestions = [
+    ...basicQuestions,
+    ...womenQuestions,
+    ...confirmQuestions,
+  ];
 
   const handleAnswer = (questionId, selectedAnswer) => {
     setAnswers((prev) => ({
@@ -30,13 +38,15 @@ const QuestionnaireScreen = () => {
     }));
   };
 
-  const allAnswered = basicQuestions.every((q) => answers[q.id]);
+  const goNext = () => setCurrentStep((prev) => prev + 1);
+  const goBack = () => setCurrentStep((prev) => prev - 1);
 
   const printAnketa = async () => {
-    if (!allAnswered) {
-      Alert.alert('Molimo odgovorite na sva pitanja prije slanja.');
-      return;
-    }
+    const allQuestions = [
+      ...basicQuestions,
+      ...womenQuestions,
+      ...confirmQuestions,
+    ];
 
     const htmlContent = `
     <html>
@@ -51,16 +61,16 @@ const QuestionnaireScreen = () => {
       </head>
       <body>
         <h1>Upitnik za davaoce krvi</h1>
-        ${questions
+        ${allQuestions
           .map((q) => {
             const selected = answers[q.id];
             const selectedText = selected || 'Nije odgovoreno';
             return `
-            <div class="question">
-              <p><strong>${q.question}</strong></p>
-              <p class="answer">Odgovor: ${selectedText}</p>
-            </div>
-          `;
+              <div class="question">
+                <p><strong>${q.question}</strong></p>
+                <p class="answer">Odgovor: ${selectedText}</p>
+              </div>
+            `;
           })
           .join('')}
       </body>
@@ -68,62 +78,45 @@ const QuestionnaireScreen = () => {
   `;
 
     try {
-      console.log('htmlContent', htmlContent);
-      await Print.printAsync({
-        html: htmlContent,
-      });
+      await Print.printAsync({ html: htmlContent });
+      navigation.navigate('HomeScreen');
     } catch (error) {
       Alert.alert('Greška', 'Štampanje nije uspjelo.');
     }
   };
 
   return (
-    <ScrollView
-      contentContainerStyle={{ padding: 80, backgroundColor: '#f9f9f9' }}
-    >
-      <Header styles={styles} />
-
-      {basicQuestions.map((q) => (
-        <QuestionView
-          key={q.id}
-          questionId={q.id}
-          question={q.question}
-          options={q.options}
-          onSelect={handleAnswer}
+    <View style={{ flex: 1, ...bgMain, padding: 24 }}>
+      {currentStep === 1 && (
+        <StepOne
+          questions={basicQuestions}
+          onNext={goNext}
+          answers={answers}
+          onAnswer={handleAnswer}
+          styles={styles}
         />
-      ))}
-
-      <View style={styles.descriptionContainer}>
-        <Text style={styles.descriptionText}>Za žene</Text>
-      </View>
-
-      {womenQuestions.map((q) => (
-        <QuestionView
-          key={q.id}
-          questionId={q.id}
-          question={q.question}
-          options={q.options}
-          onSelect={handleAnswer}
+      )}
+      {currentStep === 2 && (
+        <StepTwo
+          questions={womenQuestions}
+          onNext={goNext}
+          onBack={goBack}
+          answers={answers}
+          onAnswer={handleAnswer}
+          styles={styles}
         />
-      ))}
-
-      <ConfirmClientText />
-      {confirmQuestions.map((q) => (
-        <QuestionView
-          key={q.id}
-          questionId={q.id}
-          question={q.question}
-          options={q.options}
-          onSelect={handleAnswer}
+      )}
+      {currentStep === 3 && (
+        <StepThree
+          questions={confirmQuestions}
+          onBack={goBack}
+          answers={answers}
+          onAnswer={handleAnswer}
+          styles={styles}
+          onSubmit={printAnketa}
         />
-      ))}
-
-      <TouchableOpacity onPress={printAnketa} style={styles.sendSurveyButton}>
-        <Text style={{ color: 'white', fontSize: 18, fontWeight: '600' }}>
-          Pošalji anketu
-        </Text>
-      </TouchableOpacity>
-    </ScrollView>
+      )}
+    </View>
   );
 };
 

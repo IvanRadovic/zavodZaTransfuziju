@@ -5,8 +5,6 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 /*============ STYLES ==============*/
 import { styles } from './QuestionVieew.style';
 
-const letters = ['a', 'b', 'c', 'd', 'e'];
-
 /**
  * @name QuestionView
  * @description This component is used to display a question with multiple choice answers.
@@ -17,6 +15,7 @@ const letters = ['a', 'b', 'c', 'd', 'e'];
  * @returns {JSX.Element}
  */
 const QuestionView = ({ questionId, question, options, onSelect }) => {
+  const letters = ['DA', 'NE'];
   const [selected, setSelected] = useState(null);
 
   const handlePress = (key) => {
