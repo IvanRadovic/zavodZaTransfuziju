@@ -9,6 +9,7 @@ import {
   UIManager,
   StyleSheet,
 } from 'react-native';
+import Collapsible from 'react-native-collapsible';
 import { AntDesign } from '@expo/vector-icons';
 
 if (
@@ -33,7 +34,7 @@ export default function FAQItem({ question, answer }) {
         <AntDesign name={expanded ? 'up' : 'down'} size={20} color="#900" />
       </TouchableOpacity>
 
-      {expanded && (
+      <Collapsible collapsed={!expanded}>
         <View style={styles.answerContainer}>
           {answer.map((text, index) => (
             <View key={index} style={styles.bulletItem}>
@@ -47,7 +48,7 @@ export default function FAQItem({ question, answer }) {
             </View>
           ))}
         </View>
-      )}
+      </Collapsible>
     </View>
   );
 }
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
   },
   answerText: {
     flex: 1,
-    fontSize: 20,
-    color: '#444',
+    fontSize: 18,
+    color: '#34495e',
   },
 });

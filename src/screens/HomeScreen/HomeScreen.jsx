@@ -35,7 +35,12 @@ const HomeScreen = () => {
         >
           <Image
             source={kapljica}
-            style={{ width: 60, height: 60, borderRadius: 5 }}
+            style={{
+              width: 60,
+              height: 60,
+              borderRadius: 5,
+              resizeMode: 'cover',
+            }}
           />
           <Text style={{ ...fsMediumBig, heigth: 300 }}>DAVAOCI KRVI</Text>
         </DefaultButton>
@@ -55,10 +60,7 @@ const HomeScreen = () => {
           style={styles.iconContainer}
           onPress={() => navigation.navigate('QuestionnaireScreen')}
         >
-          <Image
-            source={upitnik}
-            style={{ width: 60, height: 60, borderRadius: 5 }}
-          />
+          <Image source={upitnik} style={styles.imageLogo} />
           <Text style={{ ...fsMediumBig }}>UPITNIK</Text>
         </DefaultButton>
       </View>

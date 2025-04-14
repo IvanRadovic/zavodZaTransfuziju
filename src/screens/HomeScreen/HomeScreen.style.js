@@ -44,4 +44,11 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
+
+  imageLogo: {
+    width: 60,
+    height: 60,
+    borderRadius: 5,
+    resizeMode: 'contain',
+  },
 });

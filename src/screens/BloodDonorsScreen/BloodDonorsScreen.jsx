@@ -11,6 +11,8 @@ import FAQItem from '../../components/ui/FAQItem/FAQItem';
 import { phSmall, pMediumSmall } from '../../Style/Components/Paddings';
 import { FontSizeBig, textCenter } from '../../Style/Components/FontAdjust';
 import { mvMedium } from '../../Style/Components/Margins';
+import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
+import Header from './components/Header/Header';
 
 /**
  * @name BloodDonorsScreen
@@ -19,16 +21,14 @@ import { mvMedium } from '../../Style/Components/Margins';
  */
 const BloodDonorsScreen = () => {
   return (
-    <View style={styles.container}>
-      <View style={{ ...mvMedium }}>
-        <Text style={{ fontSize: 35, ...textCenter }}>Vodič za davaoce</Text>
-      </View>
+    <ScrollView contentContainerStyle={styles.container}>
+      <Header styles={styles} />
       <ScrollView contentContainerStyle={{ ...pMediumSmall }}>
         {bloodDonors.map((item, index) => (
           <FAQItem key={index} question={item.question} answer={item.answer} />
         ))}
       </ScrollView>
-    </View>
+    </ScrollView>
   );
 };
 

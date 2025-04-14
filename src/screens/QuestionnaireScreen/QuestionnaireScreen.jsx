@@ -79,9 +79,39 @@ const QuestionnaireScreen = () => {
 
     try {
       await Print.printAsync({ html: htmlContent });
+
+      // const { uri } = await Print.printToFileAsync({ html: htmlContent });
+      // console.log('Generated PDF URI:', uri);
+      //
+      // const formData = new FormData();
+      // formData.append('file', {
+      //   uri,
+      //   name: 'anketa.pdf',
+      //   type: 'application/pdf',
+      // });
+      //
+      // const printerIP = 'http://192.168.223.1/ipp/print';
+      //
+      // const response = await fetch(printerIP, {
+      //   method: 'POST',
+      //   body: formData,
+      //   headers: {
+      //     'Content-Type': 'multipart/form-data',
+      //   },
+      // });
+      //
+      // console.log('Response:', response);
+
+      // if (response.ok) {
+      //   Alert.alert('Uspjeh', 'Dokument je poslat na printer.');
+      // } else {
+      //   Alert.alert('Greška', 'Printer je odbio dokument.');
+      // }
+
       navigation.navigate('HomeScreen');
     } catch (error) {
-      Alert.alert('Greška', 'Štampanje nije uspjelo.');
+      Alert.alert('Greška', 'Nije moguće direktno štampati.');
+      console.error('Greška pri direktnom štampanju:', error);
     }
   };
 
@@ -90,32 +120,32 @@ const QuestionnaireScreen = () => {
       {currentStep === 1 && (
         <StepOne
           questions={basicQuestions}
-          onNext={goNext}
+          onNext={printAnketa}
           answers={answers}
           onAnswer={handleAnswer}
           styles={styles}
         />
       )}
-      {currentStep === 2 && (
-        <StepTwo
-          questions={womenQuestions}
-          onNext={goNext}
-          onBack={goBack}
-          answers={answers}
-          onAnswer={handleAnswer}
-          styles={styles}
-        />
-      )}
-      {currentStep === 3 && (
-        <StepThree
-          questions={confirmQuestions}
-          onBack={goBack}
-          answers={answers}
-          onAnswer={handleAnswer}
-          styles={styles}
-          onSubmit={printAnketa}
-        />
-      )}
+      {/*{currentStep === 2 && (*/}
+      {/*  <StepTwo*/}
+      {/*    questions={womenQuestions}*/}
+      {/*    onNext={goNext}*/}
+      {/*    onBack={goBack}*/}
+      {/*    answers={answers}*/}
+      {/*    onAnswer={handleAnswer}*/}
+      {/*    styles={styles}*/}
+      {/*  />*/}
+      {/*)}*/}
+      {/*{currentStep === 3 && (*/}
+      {/*  <StepThree*/}
+      {/*    questions={confirmQuestions}*/}
+      {/*    onBack={goBack}*/}
+      {/*    answers={answers}*/}
+      {/*    onAnswer={handleAnswer}*/}
+      {/*    styles={styles}*/}
+      {/*    onSubmit={printAnketa}*/}
+      {/*  />*/}
+      {/*)}*/}
     </View>
   );
 };

@@ -28,9 +28,7 @@ const StepTwo = ({ questions, onNext, onBack, answers, onAnswer, styles }) => {
           <Text style={{ color: 'white', fontSize: 18 }}>Nazad</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() =>
-            isValid ? onNext() : alert('Molimo odgovorite na sva pitanja.')
-          }
+          onPress={() => onNext()}
           style={styles.sendSurveyButton}
         >
           <Text style={{ color: 'white', fontSize: 18 }}>Sledeće</Text>

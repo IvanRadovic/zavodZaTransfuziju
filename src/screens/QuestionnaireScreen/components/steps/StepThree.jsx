@@ -36,9 +36,7 @@ const StepThree = ({
           <Text style={{ color: 'white', fontSize: 18 }}>Nazad</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() =>
-            isValid ? onSubmit() : alert('Molimo odgovorite na sva pitanja.')
-          }
+          onPress={() => onSubmit()}
           style={styles.sendSurveyButton}
         >
           <Text style={{ color: 'white', fontSize: 18, fontWeight: '600' }}>
