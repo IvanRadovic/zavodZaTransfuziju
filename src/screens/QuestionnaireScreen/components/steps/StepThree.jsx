@@ -1,9 +1,15 @@
 import React from 'react';
 import { View, FlatList, TouchableOpacity, Text } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 /*========== ICONS ============*/
-import { flex1 } from '../../../../Style/Components/FlexAligments';
+import {
+  flex1,
+  FlexDirectionRow,
+  gapSmall,
+  justifyCenter,
+} from '../../../../Style/Components/FlexAligments';
 
 /*========== COMPONENTS ============*/
 import ConfirmClientText from '../confirmClientText/ConfirmClientText';
@@ -40,17 +46,25 @@ const StepThree = ({
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           onPress={onBack}
-          style={[styles.sendSurveyButton, { ...flex1 }]}
+          style={[
+            styles.sendSurveyButton,
+            { ...flex1, ...FlexDirectionRow, ...gapSmall, ...justifyCenter },
+          ]}
         >
+          <Ionicons name="arrow-back" size={24} color="white" />
           <Text style={{ color: 'white', fontSize: 18 }}>Nazad</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => onSubmit()}
-          style={[styles.sendSurveyButton, { ...flex1 }]}
+          style={[
+            styles.sendSurveyButton,
+            { ...flex1, ...FlexDirectionRow, ...gapSmall, ...justifyCenter },
+          ]}
         >
           <Text style={{ color: 'white', fontSize: 18, fontWeight: '600' }}>
             Pošalji anketu
           </Text>
+          <Ionicons name="send-sharp" size={24} color="white" />
         </TouchableOpacity>
       </View>
     </View>

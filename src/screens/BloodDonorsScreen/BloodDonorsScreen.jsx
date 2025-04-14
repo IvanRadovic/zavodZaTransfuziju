@@ -13,6 +13,8 @@ import { FontSizeBig, textCenter } from '../../Style/Components/FontAdjust';
 import { mvMedium } from '../../Style/Components/Margins';
 import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
 import Header from './components/Header/Header';
+import GoBackButton from '../../components/ui/goBack/GoBackButton';
+import { useNavigation } from '@react-navigation/native';
 
 /**
  * @name BloodDonorsScreen
@@ -20,8 +22,10 @@ import Header from './components/Header/Header';
  * @returns {JSX.Element}
  */
 const BloodDonorsScreen = () => {
+  const navigation = useNavigation();
   return (
     <ScrollView contentContainerStyle={styles.container}>
+      <GoBackButton onPress={() => navigation.goBack()} />
       <Header styles={styles} />
       <ScrollView contentContainerStyle={{ ...pMediumSmall }}>
         {bloodDonors.map((item, index) => (

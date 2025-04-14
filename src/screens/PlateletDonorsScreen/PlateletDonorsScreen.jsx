@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ScrollView, View, Text, TouchableOpacity } from 'react-native';
 import Collapsible from 'react-native-collapsible';
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 import { faqData } from '../../constants/plateletDonors';
 
@@ -9,6 +10,7 @@ import { faqData } from '../../constants/plateletDonors';
 import { styles } from './PlateletDonorsScreen.style';
 import Facts from './components/facts/Facts';
 import Header from './components/Header/Header';
+import GoBackButton from '../../components/ui/goBack/GoBackButton';
 
 /**
  * @name PlateletDonorsScreen
@@ -16,6 +18,7 @@ import Header from './components/Header/Header';
  * @returns {JSX.Element}
  */
 const PlateletDonorsScreen = () => {
+  const navigation = useNavigation();
   const [activeSections, setActiveSections] = useState([]);
 
   const toggleSection = (index) => {
@@ -26,6 +29,7 @@ const PlateletDonorsScreen = () => {
   return (
     <View style={styles.overlay}>
       <ScrollView contentContainerStyle={styles.container}>
+        <GoBackButton onPress={() => navigation.goBack()} />
         <Header styles={styles} />
         <View style={styles.questionsContainer}>
           {faqData.map((item, index) => (

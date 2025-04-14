@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { View, Text, Image, ImageBackground } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 
 /*========== IMAGES ==========*/
@@ -26,11 +26,13 @@ import DefaultButton from '../../components/ui/DefaultButton/DefaultButton';
  */
 const HomeScreen = () => {
   const navigation = useNavigation();
-  const disptach = useDispatch();
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    disptach(resetSurvey());
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      dispatch(resetSurvey());
+    }, [dispatch])
+  );
   return (
     <View style={styles.container}>
       <ImageBackground

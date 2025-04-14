@@ -24,6 +24,7 @@ import {
 } from '../../store/reducers/survey-reducer';
 import { useDispatch, useSelector } from 'react-redux';
 import QuestionnaireHTML from '../../components/questionnaireHTML/QuestionnaireHTML';
+import GoBackButton from '../../components/ui/goBack/GoBackButton';
 
 /**
  * @name QuestionnaireScreen
@@ -92,6 +93,7 @@ const QuestionnaireScreen = () => {
 
   return (
     <View style={{ flex: 1, ...bgMain, padding: 24 }}>
+      <GoBackButton onPress={() => navigation.goBack()} />
       {currentStep === 1 && (
         <StepOne
           questions={basicQuestions}
