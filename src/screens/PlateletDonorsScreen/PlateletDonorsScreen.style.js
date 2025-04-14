@@ -1,12 +1,10 @@
 import { Platform, StyleSheet } from 'react-native';
+import { bgMain } from '../../Style/Components/BackgroundColors';
 
 export const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-  },
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    ...bgMain,
   },
   container: {
     paddingTop: 20,

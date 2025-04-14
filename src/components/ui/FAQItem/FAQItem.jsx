@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#222',
     flex: 1,
-    textAlign: 'center',
+    // textAlign: 'center',
   },
   answerContainer: {
     marginTop: 12,

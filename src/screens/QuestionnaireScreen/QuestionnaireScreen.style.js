@@ -29,6 +29,7 @@ export const styles = StyleSheet.create({
   sendSurveyButton: {
     backgroundColor: '#880808',
     paddingVertical: 16,
+    paddingHorizontal: 10,
     borderRadius: 16,
     alignItems: 'center',
     marginTop: 20,

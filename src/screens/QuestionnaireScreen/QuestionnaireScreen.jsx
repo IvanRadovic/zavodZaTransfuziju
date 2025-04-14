@@ -14,6 +14,14 @@ import StepThree from './components/steps/StepThree';
 import StepTwo from './components/steps/StepTwo';
 import StepOne from './components/steps/StepOne';
 import { bgMain } from '../../Style/Components/BackgroundColors';
+import {
+  decrementStep,
+  incrementStep,
+  selectAnswers,
+  selectCurrentStep,
+  setAnswer,
+} from '../../store/reducers/survey-reducer';
+import { useDispatch, useSelector } from 'react-redux';
 
 /**
  * @name QuestionnaireScreen
@@ -22,25 +30,16 @@ import { bgMain } from '../../Style/Components/BackgroundColors';
  * @constructor
  */
 const QuestionnaireScreen = () => {
-  const navigation = useNavigation();
-  const [answers, setAnswers] = useState({});
-  const [currentStep, setCurrentStep] = useState(1);
-  const allQuestions = [
-    ...basicQuestions,
-    ...womenQuestions,
-    ...confirmQuestions,
-  ];
+  const dispatch = useDispatch();
+  const answers = useSelector(selectAnswers);
+  const currentStep = useSelector(selectCurrentStep);
 
-  const handleAnswer = useCallback((questionId, selectedAnswer) => {
-    setAnswers((prev) => ({
-      ...prev,
-      [questionId]: selectedAnswer,
-    }));
-  }, []);
+  const handleAnswer = (questionId, selectedAnswer) => {
+    dispatch(setAnswer({ questionId, answer: selectedAnswer }));
+  };
 
-  const goNext = () => setCurrentStep((prev) => prev + 1);
-  const goBack = () => setCurrentStep((prev) => prev - 1);
-
+  const goNext = () => dispatch(incrementStep());
+  const goBack = () => dispatch(decrementStep());
   const printAnketa = async () => {
     const allQuestions = [
       ...basicQuestions,
@@ -49,33 +48,54 @@ const QuestionnaireScreen = () => {
     ];
 
     const htmlContent = `
-    <html>
-      <head>
-        <meta charset="UTF-8" />
+  <html>
+    <head>
+      <meta charset="UTF-8" />
         <style>
-          body { font-family: Arial, sans-serif; padding: 10px; }
-          h2 { color: darkred; text-align: center; margin-bottom: 0px; }
-          .question { display:flex; gap:10px; font-size: 14px; align-items: center; margin-bottom: -10px }
-          .answer { font-weight: bold; color: #444; font-size: 12px; }
-        </style>
-      </head>
-      <body>
-        <h2>Upitnik za davaoce krvi</h2>
-        ${allQuestions
-          .map((q) => {
-            const selected = answers[q.id];
-            const selectedText = selected || 'Nije odgovoreno';
-            return `
-              <div class="question">
-                <p><strong>${q.question}</strong></p>
-                <p class="answer"> -  ${selectedText}</p>
+        body { font-family: Arial, sans-serif; padding: 1px; }
+        h5 { color: darkred; text-align: center; margin-bottom: 0px; }
+        .question { 
+          font-size: 10px; 
+          display: flex; 
+          gap: 5px; 
+          align-items: center;
+          justify-content: space-between; 
+          border: 0.5px solid #ccc; 
+          padding: 1px 2px 1px 2px; 
+          border-radius: 5px; 
+        }
+        .options { 
+          display: flex; 
+          gap: 10px; 
+          font-size: 10px; 
+          align-items: center; 
+          padding: 1px 5px 1px 5px; 
+          border-radius: 5px; 
+          background-color: #f9f9f9; 
+        }
+        .option { font-weight: normal; color: #444; }
+        .selected { font-weight: bold; color: red; }
+      </style>
+    </head>
+    <body>
+      <h2>Upitnik za davaoce krvi</h2>
+      ${allQuestions
+        .map((q) => {
+          const selected = answers[q.id];
+          return `
+            <div class="question">
+              <p><strong>${q.question}</strong></p>
+              <div class="options">
+                <span class="option ${selected === 'DA' ? 'selected' : ''}">DA</span>
+                <span class="option ${selected === 'NE' ? 'selected' : ''}">NE</span>
               </div>
-            `;
-          })
-          .join('')}
-      </body>
-    </html>
-  `;
+            </div>
+          `;
+        })
+        .join('')}
+    </body>
+  </html>
+`;
 
     try {
       await Print.printAsync({ html: htmlContent });
@@ -120,32 +140,32 @@ const QuestionnaireScreen = () => {
       {currentStep === 1 && (
         <StepOne
           questions={basicQuestions}
-          onNext={printAnketa}
+          onNext={goNext}
           answers={answers}
           onAnswer={handleAnswer}
           styles={styles}
         />
       )}
-      {/*{currentStep === 2 && (*/}
-      {/*  <StepTwo*/}
-      {/*    questions={womenQuestions}*/}
-      {/*    onNext={goNext}*/}
-      {/*    onBack={goBack}*/}
-      {/*    answers={answers}*/}
-      {/*    onAnswer={handleAnswer}*/}
-      {/*    styles={styles}*/}
-      {/*  />*/}
-      {/*)}*/}
-      {/*{currentStep === 3 && (*/}
-      {/*  <StepThree*/}
-      {/*    questions={confirmQuestions}*/}
-      {/*    onBack={goBack}*/}
-      {/*    answers={answers}*/}
-      {/*    onAnswer={handleAnswer}*/}
-      {/*    styles={styles}*/}
-      {/*    onSubmit={printAnketa}*/}
-      {/*  />*/}
-      {/*)}*/}
+      {currentStep === 2 && (
+        <StepTwo
+          questions={womenQuestions}
+          onNext={goNext}
+          onBack={goBack}
+          answers={answers}
+          onAnswer={handleAnswer}
+          styles={styles}
+        />
+      )}
+      {currentStep === 3 && (
+        <StepThree
+          questions={confirmQuestions}
+          onBack={goBack}
+          answers={answers}
+          onAnswer={handleAnswer}
+          styles={styles}
+          onSubmit={printAnketa}
+        />
+      )}
     </View>
   );
 };

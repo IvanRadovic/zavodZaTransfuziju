@@ -16,7 +16,7 @@ const StepOne = ({ questions, onNext, answers, onAnswer, styles }) => {
       <View style={{ ...flex1, paddingHorizontal: 80 }}>
         <FlashList
           estimatedItemSize={40}
-          style={{ paddingHorizontal: 80 }}
+          contentContainerStyle={{ paddingHorizontal: 80 }}
           data={questions}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
@@ -25,7 +25,7 @@ const StepOne = ({ questions, onNext, answers, onAnswer, styles }) => {
               question={item.question}
               options={item.options}
               onSelect={onAnswer}
-              selectedValue={answers[item.id] || null}
+              selectedValue={answers[item.id]}
             />
           )}
         />

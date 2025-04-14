@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, FlatList, TouchableOpacity, Text } from 'react-native';
+import { FlashList } from '@shopify/flash-list';
 
 /*========== COMPONENTS ============*/
 import ConfirmClientText from '../confirmClientText/ConfirmClientText';
@@ -18,7 +19,9 @@ const StepThree = ({
   return (
     <View style={{ flex: 1 }}>
       <ConfirmClientText styles={styles} />
-      <FlatList
+      <FlashList
+        estimatedItemSize={40}
+        contentContainerStyle={{ paddingHorizontal: 80 }}
         data={questions}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
@@ -27,7 +30,7 @@ const StepThree = ({
             question={item.question}
             options={item.options}
             onSelect={onAnswer}
-            selectedValue={answers[item.id] || null}
+            selectedValue={answers[item.id]}
           />
         )}
       />
