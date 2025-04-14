@@ -100,8 +100,6 @@ export const styles = StyleSheet.create({
   answerContainer: {
     padding: 20,
     paddingTop: 0,
-    borderTopWidth: 1,
-    borderTopColor: '#eee',
     flexDirection: 'row',
     gap: 5,
   },

@@ -1,5 +1,6 @@
-import { Text, View } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 import React from 'react';
+import { MaterialIcons } from '@expo/vector-icons';
 
 /**
  * @name ConfirmClientText
@@ -9,13 +10,11 @@ import React from 'react';
  */
 const ConfirmClientText = ({ styles }) => {
   return (
-    <View>
-      <Text style={styles.headerText}>SAGLASNOST DAVAOCA</Text>
-      <View style={styles.descriptionContainer}>
-        <Text style={styles.descriptionText}>
-          Popunuio\la sam upitnik o davanju krvi ili komponente krvi i
-          izjavljujem sledceće:
-        </Text>
+    <View style={styles.container}>
+      <View style={styles.titleContainer}>
+        <MaterialIcons name="bloodtype" size={32} color="#cc0000" />
+        <Text style={styles.title}>SAGLASNOST DAVAOCA</Text>
+        <MaterialIcons name="assignment" size={28} color="#cc0000" />
       </View>
     </View>
   );

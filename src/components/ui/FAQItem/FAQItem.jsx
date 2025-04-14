@@ -74,9 +74,8 @@ const styles = StyleSheet.create({
   question: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#222',
+    color: '#2c3e50',
     flex: 1,
-    // textAlign: 'center',
   },
   answerContainer: {
     marginTop: 12,

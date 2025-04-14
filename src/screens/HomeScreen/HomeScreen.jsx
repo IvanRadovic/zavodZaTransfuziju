@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, Image, ImageBackground } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
 
 /*========== IMAGES ==========*/
 import kapljica from '../../../assets/background/kapljica.png';
 import srca from '../../../assets/background/srca.png';
 import upitnik from '../../../assets/background/anketa.png';
+
+/*========== REDUX ============*/
+import { resetSurvey } from '../../store/reducers/survey-reducer';
 
 /*========== STYLES ==========*/
 import { styles } from './HomeScreen.style';
@@ -22,6 +26,11 @@ import DefaultButton from '../../components/ui/DefaultButton/DefaultButton';
  */
 const HomeScreen = () => {
   const navigation = useNavigation();
+  const disptach = useDispatch();
+
+  useEffect(() => {
+    disptach(resetSurvey());
+  }, []);
   return (
     <View style={styles.container}>
       <ImageBackground

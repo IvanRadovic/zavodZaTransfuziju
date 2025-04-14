@@ -11,12 +11,12 @@ const StepOne = ({ questions, onNext, answers, onAnswer, styles }) => {
   const isValid = questions.every((q) => answers[q.id]);
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, paddingHorizontal: 50 }}>
       <Header styles={styles} />
-      <View style={{ ...flex1, paddingHorizontal: 80 }}>
+      <View style={{ ...flex1 }}>
         <FlashList
           estimatedItemSize={40}
-          contentContainerStyle={{ paddingHorizontal: 80 }}
+          contentContainerStyle={{ paddingHorizontal: 5 }}
           data={questions}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
