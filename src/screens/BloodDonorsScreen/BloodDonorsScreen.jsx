@@ -24,15 +24,15 @@ import { useNavigation } from '@react-navigation/native';
 const BloodDonorsScreen = () => {
   const navigation = useNavigation();
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <GoBackButton onPress={() => navigation.goBack()} />
-      <Header styles={styles} />
-      <ScrollView contentContainerStyle={{ ...pMediumSmall }}>
+    <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+        <GoBackButton onPress={() => navigation.goBack()} />
+        <Header styles={styles} />
         {bloodDonors.map((item, index) => (
           <FAQItem key={index} question={item.question} answer={item.answer} />
         ))}
       </ScrollView>
-    </ScrollView>
+    </View>
   );
 };
 

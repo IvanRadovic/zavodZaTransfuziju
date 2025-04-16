@@ -5,8 +5,12 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     ...bgMain,
+  },
+
+  scrollViewContainer: {
     paddingTop: 20,
     paddingHorizontal: 50,
+    paddingBottom: 40,
   },
   headerContainer: {
     backgroundColor: '#fff5f5',

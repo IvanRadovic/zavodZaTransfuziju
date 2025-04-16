@@ -32,7 +32,7 @@ const QuestionnaireHTML = ({ allQuestions, answers }) => {
         </style>
       </head>
       <body>
-        <h2>Upitnik za davaoce krvi</h2>
+        <h6>Upitnik za davaoce krvi</h6>
         ${allQuestions
           .map((q) => {
             const selected = answers[q.id];
