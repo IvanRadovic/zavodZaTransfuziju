@@ -7,6 +7,7 @@ import HomeScreen from '../screens/HomeScreen/HomeScreen';
 import BloodDonorsScreen from '../screens/BloodDonorsScreen/BloodDonorsScreen';
 import QuestionnaireScreen from '../screens/QuestionnaireScreen/QuestionnaireScreen';
 import PlateletDonorsScreen from '../screens/PlateletDonorsScreen/PlateletDonorsScreen';
+import InactiveWrapper from '../components/ui/inactiveWrapper/InactiveWrapper';
 
 const Stack = createStackNavigator();
 
@@ -48,16 +49,18 @@ const AppNavigation = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{}}>
-        {SCREENS.map((screen) => (
-          <Stack.Screen
-            key={screen.name}
-            name={screen.name}
-            component={screen.component}
-            options={screen.options}
-          />
-        ))}
-      </Stack.Navigator>
+      <InactiveWrapper>
+        <Stack.Navigator screenOptions={{}}>
+          {SCREENS.map((screen) => (
+            <Stack.Screen
+              key={screen.name}
+              name={screen.name}
+              component={screen.component}
+              options={screen.options}
+            />
+          ))}
+        </Stack.Navigator>
+      </InactiveWrapper>
     </NavigationContainer>
   );
 };
