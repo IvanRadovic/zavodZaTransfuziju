@@ -1,19 +1,17 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 import { View, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import * as Print from 'expo-print';
+import { useDispatch, useSelector } from 'react-redux';
 
 /*=========== STYLES ============*/
 import { styles } from './QuestionnaireScreen.style';
+import { bgMain } from '../../Style/Components/BackgroundColors';
 
 /*=========== CONSTANTS ============*/
 import { basicQuestions, confirmQuestions, womenQuestions } from './constants';
 
-/*========== COMPONENTS ==========*/
-import StepThree from './components/steps/StepThree';
-import StepTwo from './components/steps/StepTwo';
-import StepOne from './components/steps/StepOne';
-import { bgMain } from '../../Style/Components/BackgroundColors';
+/*=========== REDUX ===========*/
 import {
   decrementStep,
   incrementStep,
@@ -22,9 +20,14 @@ import {
   selectCurrentStep,
   setAnswer,
 } from '../../store/reducers/survey-reducer';
-import { useDispatch, useSelector } from 'react-redux';
+
+/*========== COMPONENTS ==========*/
+import StepThree from './components/steps/StepThree';
+import StepTwo from './components/steps/StepTwo';
+import StepOne from './components/steps/StepOne';
 import QuestionnaireHTML from '../../components/questionnaireHTML/QuestionnaireHTML';
 import GoBackButton from '../../components/ui/goBack/GoBackButton';
+import { DonorCardHTML } from '../../components/ui/donorCard/DonorCard';
 
 /**
  * @name QuestionnaireScreen
@@ -51,38 +54,14 @@ const QuestionnaireScreen = () => {
       ...confirmQuestions,
     ];
 
-    const htmlContent = QuestionnaireHTML({ allQuestions, answers });
+    const htmlContent = `
+    ${QuestionnaireHTML({ allQuestions, answers })}
+    <div style="page-break-before: always;"></div>
+    ${DonorCardHTML()}
+  `;
 
     try {
       await Print.printAsync({ html: htmlContent });
-
-      // const { uri } = await Print.printToFileAsync({ html: htmlContent });
-      // console.log('Generated PDF URI:', uri);
-      //
-      // const formData = new FormData();
-      // formData.append('file', {
-      //   uri,
-      //   name: 'anketa.pdf',
-      //   type: 'application/pdf',
-      // });
-      //
-      // const printerIP = 'http://192.168.223.1/ipp/print';
-      //
-      // const response = await fetch(printerIP, {
-      //   method: 'POST',
-      //   body: formData,
-      //   headers: {
-      //     'Content-Type': 'multipart/form-data',
-      //   },
-      // });
-      //
-      // console.log('Response:', response);
-
-      // if (response.ok) {
-      //   Alert.alert('Uspjeh', 'Dokument je poslat na printer.');
-      // } else {
-      //   Alert.alert('Greška', 'Printer je odbio dokument.');
-      // }
       dispatch(resetSurvey());
       navigation.navigate('HomeScreen');
     } catch (error) {

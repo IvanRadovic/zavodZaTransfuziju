@@ -1,44 +1,76 @@
-import React from 'react';
-
 const QuestionnaireHTML = ({ allQuestions, answers }) => {
   return `
     <html>
       <head>
         <meta charset="UTF-8" />
         <style>
-          body { font-family: Arial, sans-serif; padding: 1px; }
-          h5 { color: darkred; text-align: center; margin-bottom: 0px; }
-          .question { 
-            font-size: 10px; 
-            display: flex; 
-            gap: 5px; 
+          body { 
+            font-family: Arial, sans-serif; 
+            font-size: 12px; 
+            padding: 20px; 
+            line-height: 1.5; 
+          }
+          h5 { 
+            color: darkred; 
+            text-align: center; 
+            margin: 0 0 10px 0; 
+            text-transform: uppercase;
+          }
+          .section-title {
+            background-color: #ffffcc;
+            font-weight: bold;
+            padding: 4px;
+            border: 1px solid #ccc;
+            margin: 10px 0 5px 0;
+          }
+          .question {
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: space-between; 
-            border: 0.5px solid #ccc; 
-            padding: 1px 2px 1px 2px; 
-            border-radius: 5px; 
+            border-bottom: 1px solid #ccc;
+            padding: 4px 0;
           }
-          .options { 
-            display: flex; 
-            gap: 10px; 
-            font-size: 10px; 
-            align-items: center; 
-            padding: 1px 5px 1px 5px; 
-            border-radius: 5px; 
-            background-color: #f9f9f9; 
+          .question p {
+            margin: 0;
+            flex: 1;
           }
-          .option { font-weight: normal; color: #444; }
-          .selected { font-weight: bold; color: red; }
+          .options {
+            display: flex;
+            gap: 20px;
+            min-width: 80px;
+            justify-content: flex-end;
+          }
+          .option {
+            font-weight: normal;
+            color: #000;
+          }
+          .selected {
+            font-weight: bold;
+            color: red;
+          }
+          .note {
+            font-size: 10px;
+            margin-top: 20px;
+          }
+          .footer {
+            margin-top: 30px;
+            border-top: 1px solid #000;
+            padding-top: 10px;
+          }
         </style>
       </head>
       <body>
-        <h6>Upitnik za davaoce krvi</h6>
+        <h5>Popunjava davalac</h5>
+        <p style="font-size:11px;">
+          Molimo Vas da pročitate upitnik i iskreno odgovorite na svako pitanje. Upitnik je važan zbog očuvanja Vašeg zdravlja i sigurnosti transfuzijskog liječenja bolesnika.
+        </p>
+
         ${allQuestions
           .map((q) => {
             const selected = answers[q.id];
             return `
               <div class="question">
-                <p><strong>${q.question}</strong></p>
+                <p>${q.id}. ${q.question}</p>
                 <div class="options">
                   <span class="option ${selected === 'DA' ? 'selected' : ''}">DA</span>
                   <span class="option ${selected === 'NE' ? 'selected' : ''}">NE</span>
@@ -47,6 +79,11 @@ const QuestionnaireHTML = ({ allQuestions, answers }) => {
             `;
           })
           .join('')}
+
+        <div class="footer">
+          <p>Hvala što dajete krv</p>
+          <p>Potpis davaoca: ___________________________</p>
+        </div>
       </body>
     </html>
   `;
