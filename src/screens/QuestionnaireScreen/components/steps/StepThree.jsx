@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, FlatList, TouchableOpacity, Text } from 'react-native';
+import { View, FlatList, TouchableOpacity, Text, Alert } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
@@ -55,7 +55,16 @@ const StepThree = ({
           <Text style={{ color: 'white', fontSize: 18 }}>Nazad</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => onSubmit()}
+          onPress={() => {
+            if (isValid) {
+              onSubmit();
+            } else {
+              Alert.alert(
+                'Greska',
+                'Molimo Vas da odgovorite na sva pitanja pre nego što nastavite.'
+              );
+            }
+          }}
           style={[
             styles.sendSurveyButton,
             { ...flex1, ...FlexDirectionRow, ...gapSmall, ...justifyCenter },

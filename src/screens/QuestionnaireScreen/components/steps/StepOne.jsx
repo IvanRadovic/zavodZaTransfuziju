@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlashList } from '@shopify/flash-list';
-import { View, FlatList, TouchableOpacity, Text } from 'react-native';
+import { View, FlatList, TouchableOpacity, Text, Alert } from 'react-native';
 
 /*========== COMPONENTS ============*/
 import Header from '../header/Header';
@@ -31,7 +31,16 @@ const StepOne = ({ questions, onNext, answers, onAnswer, styles }) => {
         />
       </View>
       <TouchableOpacity
-        onPress={() => onNext()}
+        onPress={() => {
+          if (isValid) {
+            onNext();
+          } else {
+            Alert.alert(
+              'Greska', // Title of the alert
+              'Molimo Vas da odgovorite na sva pitanja pre nego što nastavite.' // Message of the alert
+            );
+          }
+        }}
         style={styles.sendSurveyButton}
       >
         <Text style={{ color: 'white', fontSize: 18 }}>Sledeće</Text>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlashList } from '@shopify/flash-list';
-import { View, FlatList, TouchableOpacity, Text } from 'react-native';
+import { View, FlatList, TouchableOpacity, Text, Alert } from 'react-native';
 
 /*========== COMPONENTS ============*/
 import QuestionView from '../../../../components/layout/QuestionView/QuestionView';
@@ -14,10 +14,13 @@ import {
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 const StepTwo = ({ questions, onNext, onBack, answers, onAnswer, styles }) => {
+  const isValid = questions.every((q) => answers[q.id]);
+
   return (
     <>
       <View style={{ flex: 1, paddingHorizontal: 50 }}>
         <WomenHeader styles={styles} />
+
         <FlashList
           estimatedItemSize={40}
           contentContainerStyle={{ paddingHorizontal: 5 }}
@@ -45,7 +48,16 @@ const StepTwo = ({ questions, onNext, onBack, answers, onAnswer, styles }) => {
             <Text style={{ color: 'white', fontSize: 18 }}>Nazad</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => onNext()}
+            onPress={() => {
+              if (isValid) {
+                onNext();
+              } else {
+                Alert.alert(
+                  'Greska', // Title of the alert
+                  'Molimo Vas da odgovorite na sva pitanja pre nego što nastavite.' // Message of the alert
+                );
+              }
+            }}
             style={[styles.sendSurveyButton, { ...flex1 }]}
           >
             <Text style={{ color: 'white', fontSize: 18 }}>Sledeće</Text>
