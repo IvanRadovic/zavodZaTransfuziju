@@ -48,17 +48,17 @@ const QuestionnaireScreen = () => {
   const goNext = () => dispatch(incrementStep());
   const goBack = () => dispatch(decrementStep());
   const printAnketa = async () => {
+    console.log('This is the printAnketa function');
     const allQuestions = [
       ...basicQuestions,
       ...womenQuestions,
       ...confirmQuestions,
     ];
 
-    const htmlContent = `
-    ${QuestionnaireHTML({ allQuestions, answers })}
-    <div style="page-break-before: always;"></div>
-    ${DonorCardHTML()}
-  `;
+    const htmlContent =
+      (QuestionnaireHTML({ allQuestions, answers }) || '') +
+      '<div style="page-break-before: always;"></div>' +
+      (DonorCardHTML() || '');
 
     try {
       await Print.printAsync({ html: htmlContent });
