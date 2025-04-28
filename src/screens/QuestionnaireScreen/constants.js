@@ -108,6 +108,11 @@ export const basicQuestions = [
     id: 20,
     question:
       'Da li ste u poroteklih 12 mjeseci imali neku operaciju ili primili krv?',
+    subQuestions: [
+      { id: '20a', text: 'imali tešku operaciju ili primili krv' },
+      { id: '20b', text: 'putovali ili živjeli u inostranstvu' },
+      { id: '20c', text: 'imali akupunkturu, pirsing ili tetovažu' },
+    ],
     options: ['Da', 'Ne'],
   },
   {
@@ -189,6 +194,7 @@ export const basicQuestions = [
     question:
       'Da li ste imali ste Vi imali analne seksualne odnose tokom prethodni 6 mjeseci?',
     options: ['Da', 'Ne'],
+    title: 'endOfBasic',
   },
 ];
 
@@ -208,6 +214,7 @@ export const womenQuestions = [
     question:
       'Da li ste u poslednjih 6 mjeseci imali porođaj ili prekid trudnoće?',
     options: ['Da', 'Ne'],
+    title: 'endOfWomen',
   },
 ];
 
