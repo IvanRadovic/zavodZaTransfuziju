@@ -9,8 +9,11 @@ import { faqData } from '../../constants/plateletDonors';
 // /*========== STYLES ==========*/
 import { styles } from './PlateletDonorsScreen.style';
 import Facts from './components/facts/Facts';
+
+/*========== COMPONENTS ============*/
 import Header from './components/Header/Header';
 import GoBackButton from '../../components/ui/goBack/GoBackButton';
+import { useInactivityTimer } from '../../hooks/useInactivityTimer';
 
 /**
  * @name PlateletDonorsScreen
@@ -20,15 +23,20 @@ import GoBackButton from '../../components/ui/goBack/GoBackButton';
 const PlateletDonorsScreen = () => {
   const navigation = useNavigation();
   const [activeSections, setActiveSections] = useState([]);
+  const { panHandlers, resetTimer } = useInactivityTimer(navigation);
 
   const toggleSection = (index) => {
     setActiveSections((prev) =>
       prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
     );
+    resetTimer();
   };
   return (
-    <View style={styles.overlay}>
-      <ScrollView contentContainerStyle={styles.container}>
+    <View {...panHandlers} style={styles.overlay}>
+      <ScrollView
+        onScroll={resetTimer}
+        contentContainerStyle={styles.container}
+      >
         <GoBackButton onPress={() => navigation.goBack()} />
         <Header styles={styles} />
         <View style={styles.questionsContainer}>

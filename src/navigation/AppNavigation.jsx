@@ -49,18 +49,16 @@ const AppNavigation = () => {
 
   return (
     <NavigationContainer>
-      <InactiveWrapper>
-        <Stack.Navigator screenOptions={{}}>
-          {SCREENS.map((screen) => (
-            <Stack.Screen
-              key={screen.name}
-              name={screen.name}
-              component={screen.component}
-              options={screen.options}
-            />
-          ))}
-        </Stack.Navigator>
-      </InactiveWrapper>
+      <Stack.Navigator screenOptions={{}}>
+        {SCREENS.map((screen) => (
+          <Stack.Screen
+            key={screen.name}
+            name={screen.name}
+            component={screen.component}
+            options={screen.options}
+          />
+        ))}
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };

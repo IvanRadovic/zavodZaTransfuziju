@@ -4,7 +4,7 @@ export const DonorCardHTML = () => `
       <style>
         body {
           font-family: Arial, sans-serif;
-          margin: 40px;
+          margin: 5px;
         }
         .header {
           display: flex;
@@ -12,21 +12,54 @@ export const DonorCardHTML = () => `
           align-items: center;
           border: 1px solid black;
           padding: 10px;
-          margin-bottom: 20px;
+          margin-bottom: 50px;
         }
         .header .title {
           font-size: 20px;
           font-weight: bold;
           color: darkred;
         }
+        
+        .partOne {
+            display: flex;
+            flex-direction: row; 
+            align-items: center; 
+            gap: 10px;
+        }
+        .partOne .section {
+            display: flex;
+            flex: 1;
+            flex-direction: row; 
+            align-items: center; 
+            gap: 10px;
+        }
+        .partOne_section__item{
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            align-items: start;
+        }
+        
+        .letters-group{
+            display:flex;
+            flex:1;
+            justify-content: space-between;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .letter {
+            font-size: 16px;
+            font-weight: bold;
+        }
+       
         .section {
           border: 1px solid black;
-          padding: 10px;
-          margin-bottom: 20px;
+          padding: 5px;
         }
         .row {
           display: flex;
-          justify-content: space-between;
+          align-items: center;
           margin-bottom: 8px;
         }
         .label {
@@ -68,21 +101,27 @@ export const DonorCardHTML = () => `
         <div>Datum: ____________</div>
       </div>
 
-      <div class="section">
-        <strong>Određivanje hemoglobina/hematokrita:</strong>
-        <div class="row">
-          <span class="label">Očitana vrijednost:</span> <span class="value"></span>
-        </div>
-      </div>
-
-      <div class="section">
-        <strong>Određivanje krvne grupe na pločici:</strong>
-        <div class="checkbox-group">
-          <label><input type="checkbox"> A</label>
-          <label><input type="checkbox"> B</label>
-          <label><input type="checkbox"> AB</label>
-          <label><input type="checkbox"> 0</label>
-        </div>
+      <div class="partOne">
+          <div class="section">
+            <div class="partOne_section__item readedValue">
+                <strong>Određivanje hemoglobina/hematokrita:</strong>
+                <div>
+                  <span class="label">Očitana vrijednost:</span> <span class="">____________</span>
+                </div>
+            </div>
+            <div class="partOne_section__item">
+                <strong>Određivanje krvne grupe na pločici:</strong>
+                <div class="letters-group">
+                  <label class="letter">A</label>
+                  <label class="letter">B</label>
+                  <label class="letter">AB</label>
+                  <label class="letter">0</label>
+                </div>
+                <div>
+                Potpis tehničara: <span class="">____________</span>
+                </div>
+            </div>
+          </div>
       </div>
 
       <div class="section">

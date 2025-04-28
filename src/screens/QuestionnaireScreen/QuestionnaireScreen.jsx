@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import * as Print from 'expo-print';
@@ -7,6 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 /*=========== STYLES ============*/
 import { styles } from './QuestionnaireScreen.style';
 import { bgMain } from '../../Style/Components/BackgroundColors';
+
+/*========== HOOKS ============*/
+import { useInactivityTimer } from '../../hooks/useInactivityTimer';
 
 /*=========== CONSTANTS ============*/
 import { basicQuestions, confirmQuestions, womenQuestions } from './constants';
@@ -40,6 +43,7 @@ const QuestionnaireScreen = () => {
   const dispatch = useDispatch();
   const answers = useSelector(selectAnswers);
   const currentStep = useSelector(selectCurrentStep);
+  const { panHandlers, resetTimer } = useInactivityTimer(navigation);
 
   const handleAnswer = (questionId, selectedAnswer) => {
     dispatch(setAnswer({ questionId, answer: selectedAnswer }));
@@ -70,8 +74,12 @@ const QuestionnaireScreen = () => {
     }
   };
 
+  useEffect(() => {
+    dispatch(resetSurvey());
+  }, []);
+
   return (
-    <View style={{ flex: 1, ...bgMain, padding: 24 }}>
+    <View style={{ flex: 1, ...bgMain, padding: 24 }} {...panHandlers}>
       <GoBackButton onPress={() => navigation.goBack()} />
       {currentStep === 1 && (
         <StepOne
@@ -80,6 +88,7 @@ const QuestionnaireScreen = () => {
           answers={answers}
           onAnswer={handleAnswer}
           styles={styles}
+          resetTimer={resetTimer}
         />
       )}
       {currentStep === 2 && (
@@ -90,6 +99,7 @@ const QuestionnaireScreen = () => {
           answers={answers}
           onAnswer={handleAnswer}
           styles={styles}
+          resetTimer={resetTimer}
         />
       )}
       {currentStep === 3 && (
@@ -100,6 +110,7 @@ const QuestionnaireScreen = () => {
           onAnswer={handleAnswer}
           styles={styles}
           onSubmit={printAnketa}
+          resetTimer={resetTimer}
         />
       )}
     </View>

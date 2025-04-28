@@ -1,20 +1,47 @@
 import React from 'react';
 import { FlashList } from '@shopify/flash-list';
-import { View, FlatList, TouchableOpacity, Text, Alert } from 'react-native';
+import { View, TouchableOpacity, Text, Alert } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
-/*========== COMPONENTS ============*/
-import QuestionView from '../../../../components/layout/QuestionView/QuestionView';
-import WomenHeader from '../womenHeader/WomenHeader';
+/*=========== STYLE COMPONENTS ===============*/
 import {
   flex1,
   FlexDirectionRow,
   gapSmall,
   justifyCenter,
 } from '../../../../Style/Components/FlexAligments';
-import Ionicons from '@expo/vector-icons/Ionicons';
 
-const StepTwo = ({ questions, onNext, onBack, answers, onAnswer, styles }) => {
+/*========== COMPONENTS ============*/
+import QuestionView from '../../../../components/layout/QuestionView/QuestionView';
+import WomenHeader from '../womenHeader/WomenHeader';
+
+const StepTwo = ({
+  questions,
+  onNext,
+  onBack,
+  answers,
+  onAnswer,
+  styles,
+  resetTimer,
+}) => {
   const isValid = questions.every((q) => answers[q.id]);
+
+  const onGoBack = () => {
+    resetTimer();
+    onBack();
+  };
+
+  const handleNext = () => {
+    resetTimer();
+    if (isValid) {
+      onNext();
+    } else {
+      Alert.alert(
+        'Greska',
+        'Molimo Vas da odgovorite na sva pitanja pre nego što nastavite.'
+      );
+    }
+  };
 
   return (
     <>
@@ -25,6 +52,8 @@ const StepTwo = ({ questions, onNext, onBack, answers, onAnswer, styles }) => {
           estimatedItemSize={40}
           contentContainerStyle={{ paddingHorizontal: 5 }}
           data={questions}
+          extraData={answers}
+          onScroll={resetTimer}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
             <QuestionView
@@ -38,7 +67,7 @@ const StepTwo = ({ questions, onNext, onBack, answers, onAnswer, styles }) => {
         />
         <View style={styles.buttonContainer}>
           <TouchableOpacity
-            onPress={onBack}
+            onPress={onGoBack}
             style={[
               styles.sendSurveyButton,
               { ...flex1, ...FlexDirectionRow, ...gapSmall, ...justifyCenter },
@@ -48,16 +77,7 @@ const StepTwo = ({ questions, onNext, onBack, answers, onAnswer, styles }) => {
             <Text style={{ color: 'white', fontSize: 18 }}>Nazad</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => {
-              if (isValid) {
-                onNext();
-              } else {
-                Alert.alert(
-                  'Greska', // Title of the alert
-                  'Molimo Vas da odgovorite na sva pitanja pre nego što nastavite.' // Message of the alert
-                );
-              }
-            }}
+            onPress={handleNext}
             style={[styles.sendSurveyButton, { ...flex1 }]}
           >
             <Text style={{ color: 'white', fontSize: 18 }}>Sledeće</Text>

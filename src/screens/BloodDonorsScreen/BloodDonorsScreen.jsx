@@ -1,4 +1,5 @@
 import { ScrollView, Text, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 /*=========== STYLES ============*/
 import { styles } from './BloodDonorsScreen.style';
@@ -8,13 +9,11 @@ import { bloodDonors } from '../../constants/bloodDonors';
 
 /*=========== COMPONENTS ============*/
 import FAQItem from '../../components/ui/FAQItem/FAQItem';
-import { phSmall, pMediumSmall } from '../../Style/Components/Paddings';
-import { FontSizeBig, textCenter } from '../../Style/Components/FontAdjust';
-import { mvMedium } from '../../Style/Components/Margins';
-import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
 import Header from './components/Header/Header';
 import GoBackButton from '../../components/ui/goBack/GoBackButton';
-import { useNavigation } from '@react-navigation/native';
+
+/*============ HOOKS ==============*/
+import { useInactivityTimer } from '../../hooks/useInactivityTimer';
 
 /**
  * @name BloodDonorsScreen
@@ -23,9 +22,13 @@ import { useNavigation } from '@react-navigation/native';
  */
 const BloodDonorsScreen = () => {
   const navigation = useNavigation();
+  const { panHandlers, resetTimer } = useInactivityTimer(navigation);
   return (
-    <View style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+    <View {...panHandlers} style={styles.container}>
+      <ScrollView
+        onScroll={resetTimer}
+        contentContainerStyle={styles.scrollViewContainer}
+      >
         <GoBackButton onPress={() => navigation.goBack()} />
         <Header styles={styles} />
         {bloodDonors.map((item, index) => (

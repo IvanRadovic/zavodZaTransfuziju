@@ -22,8 +22,26 @@ const StepThree = ({
   onAnswer,
   styles,
   onSubmit,
+  resetTimer,
 }) => {
   const isValid = questions.every((q) => answers[q.id]);
+
+  const handleBack = () => {
+    resetTimer();
+    onBack();
+  };
+
+  const submitSurvey = () => {
+    resetTimer();
+    if (isValid) {
+      onSubmit();
+    } else {
+      Alert.alert(
+        'Greska',
+        'Molimo Vas da odgovorite na sva pitanja pre nego što nastavite.'
+      );
+    }
+  };
 
   return (
     <View style={{ flex: 1, paddingHorizontal: 50 }}>
@@ -32,6 +50,8 @@ const StepThree = ({
         estimatedItemSize={40}
         contentContainerStyle={{ paddingHorizontal: 5 }}
         data={questions}
+        extraData={answers}
+        onScroll={resetTimer}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <QuestionView
@@ -45,7 +65,7 @@ const StepThree = ({
       />
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-          onPress={onBack}
+          onPress={handleBack}
           style={[
             styles.sendSurveyButton,
             { ...flex1, ...FlexDirectionRow, ...gapSmall, ...justifyCenter },
@@ -55,16 +75,7 @@ const StepThree = ({
           <Text style={{ color: 'white', fontSize: 18 }}>Nazad</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => {
-            if (isValid) {
-              onSubmit();
-            } else {
-              Alert.alert(
-                'Greska',
-                'Molimo Vas da odgovorite na sva pitanja pre nego što nastavite.'
-              );
-            }
-          }}
+          onPress={submitSurvey}
           style={[
             styles.sendSurveyButton,
             { ...flex1, ...FlexDirectionRow, ...gapSmall, ...justifyCenter },

@@ -6,8 +6,8 @@ const QuestionnaireHTML = ({ allQuestions, answers }) => {
         <style>
           body { 
             font-family: Arial, sans-serif; 
-            font-size: 12px; 
-            padding: 20px; 
+            font-size: 6px; 
+            padding: 10px; 
             line-height: 1.5; 
           }
           h5 { 
@@ -28,7 +28,6 @@ const QuestionnaireHTML = ({ allQuestions, answers }) => {
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid #ccc;
-            padding: 4px 0;
           }
           .question p {
             margin: 0;
@@ -60,7 +59,7 @@ const QuestionnaireHTML = ({ allQuestions, answers }) => {
         </style>
       </head>
       <body>
-        <h5>Popunjava davalac</h5>
+        <h5 style="color: red">Popunjava davalac</h5>
         <p style="font-size:11px;">
           Molimo Vas da pročitate upitnik i iskreno odgovorite na svako pitanje. Upitnik je važan zbog očuvanja Vašeg zdravlja i sigurnosti transfuzijskog liječenja bolesnika.
         </p>
@@ -70,7 +69,7 @@ const QuestionnaireHTML = ({ allQuestions, answers }) => {
             const selected = answers[q.id];
             return `
               <div class="question">
-                <p>${q.id}. ${q.question}</p>
+                <p style="font-size:3px; padding:0px">${q.id}. ${q.question}</p>
                 <div class="options">
                   <span class="option ${selected === 'DA' ? 'selected' : ''}">DA</span>
                   <span class="option ${selected === 'NE' ? 'selected' : ''}">NE</span>

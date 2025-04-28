@@ -16,14 +16,7 @@ import { styles } from './QuestionVieew.style';
  */
 const QuestionView = React.memo(
   ({ questionId, question, options, onSelect, selectedValue }) => {
-    const [selected, setSelected] = useState(selectedValue);
-
-    useEffect(() => {
-      setSelected(selectedValue);
-    }, [selectedValue]);
-
     const handlePress = (key) => {
-      setSelected(key);
       onSelect(questionId, key);
     };
 
@@ -33,7 +26,7 @@ const QuestionView = React.memo(
         <View style={styles.answerContainer}>
           {options.map((option, index) => {
             const key = ['DA', 'NE'][index];
-            const isChecked = selected === key;
+            const isChecked = selectedValue === key;
 
             return (
               <TouchableOpacity
