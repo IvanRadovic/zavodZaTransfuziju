@@ -4,7 +4,7 @@
     "slug": "Zavod",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/logo1.png",
+    "icon": "./assets/zavodLogo.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
