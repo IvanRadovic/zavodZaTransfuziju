@@ -33,14 +33,7 @@ const StepTwo = ({
 
   const handleNext = () => {
     resetTimer();
-    if (isValid) {
-      onNext();
-    } else {
-      Alert.alert(
-        'Greska',
-        'Molimo Vas da odgovorite na sva pitanja pre nego što nastavite.'
-      );
-    }
+    onNext();
   };
 
   return (

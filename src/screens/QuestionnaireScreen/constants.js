@@ -108,11 +108,9 @@ export const basicQuestions = [
     id: 20,
     question:
       'Da li ste u poroteklih 12 mjeseci imali neku operaciju ili primili krv?',
-    subQuestions: [
-      { id: '20a', text: 'imali tešku operaciju ili primili krv' },
-      { id: '20b', text: 'putovali ili živjeli u inostranstvu' },
-      { id: '20c', text: 'imali akupunkturu, pirsing ili tetovažu' },
-    ],
+    questionSubA: 'imali seksualni odnos sa novim partnerom?',
+    questionSubB: 'putovali u rizične zemlje?',
+    questionSubC: 'primali transfuziju krvi?',
     options: ['Da', 'Ne'],
   },
   {
@@ -137,6 +135,15 @@ export const basicQuestions = [
     question:
       'Da li ste bolobali ili bolujete od hepatitisa (žutice) A,B ili C?',
     options: ['Da', 'Ne'],
+    questionSubA:
+      'Da li ste bolobali ili bolujete od hepatitisa (žutice) A,B ili C?',
+    questionSubB:
+      'Da li mislite da je postojala mogućnost da se zarazite HIV-om?',
+    questionSubC: 'Da li ste ikada koristili intravenske droge?',
+    questionSubD:
+      'Da li ste ikada koristili preparate za bodi bilding? (steroidi)',
+    questionSubE:
+      'Da li ste ikada za pružanje seksualnih usluga uzimali novac ili drogu?',
   },
   {
     id: 25,
@@ -164,6 +171,16 @@ export const basicQuestions = [
     question:
       'Da li ste imali seksualne odnose tokom proteklih 6 mjeseci sa osobom koja je HIV pozitivna?',
     options: ['Da', 'Ne'],
+    questionSubA: 'sa osobom koja je HIV pozitivna?',
+    questionSubB:
+      'sa osobom koja ima  osobom koja ima hepaptitis (žuticu) B ili C?',
+    questionSubC:
+      'sa osobom koja je ikada za pružanje seksualnih usluga uzimala novac ili drogu?',
+    questionSubD: 'sa osobom koja je ikada koristila intravenske droge?',
+    questionSubE:
+      'sa osobom čije Vam dotadašnje seksualno ponašanje nije poznato?',
+    questionSubF:
+      'da li ste Vi imali analne seksualne odnosne tokom proteklih 6 mjeseic',
   },
   {
     id: 30,
