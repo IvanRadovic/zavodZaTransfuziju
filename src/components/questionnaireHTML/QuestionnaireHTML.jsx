@@ -181,7 +181,7 @@ const QuestionnaireHTML = ({ allQuestions, answers }) => {
       <head>
         <meta charset="UTF-8" />
         <style>
-          body { font-family: Arial, sans-serif; font-size: 10px;  line-height: 1; }
+          body { font-family: Arial, sans-serif; font-size: 14px;  line-height: 1; }
           .container{ border: 0.5px solid gray; }
           h5 { color: darkred; text-align: center; margin:0; text-transform: uppercase; }
           .questionHeader { background-color: #cdb476; display: flex; justify-content: center; align-items: center; flex-direction: column; color: darkred; margin: 0px; padding-left: 2px; padding-right: 2px }
@@ -191,7 +191,7 @@ const QuestionnaireHTML = ({ allQuestions, answers }) => {
           .id { width: 8px; border-right: 0.5px solid #ccc; margin:0px; padding: 5px; }
           .question p { margin: 0; flex: 1; }
           .options { display: flex; gap: 10px; min-width: 30px; justify-content: end; align-items: end; }
-          .option { font-weight: normal; color: #000; font-size: 5px; }
+          .option { font-weight: normal; color: #000; font-size: 14px; }
           .options .selected { font-weight: bold; color: darkred; }
           .selected { font-weight: bold; color: darkred; }
         
