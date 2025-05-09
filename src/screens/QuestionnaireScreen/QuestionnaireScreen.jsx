@@ -59,13 +59,67 @@ const QuestionnaireScreen = () => {
       ...confirmQuestions,
     ];
 
-    const htmlContent =
-      (QuestionnaireHTML({ allQuestions, answers }) || '') +
-      '<div style="page-break-before: always;"></div>' +
-      (DonorCardHTML() || '');
+    const htmlContent = `
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8" />
+      <style>
+        @page {size: A4 portrait;margin: 5mm;}
+        .page-break {page-break-before: always !important;}
+        body { font-family: Arial, sans-serif; font-size: 18px !important;  line-height: 1; }
+         .container{ border: 0.5px solid gray; }
+          h5 { color: #d80c0c; text-align: center; margin:0; text-transform: uppercase; }
+          .questionHeader { background-color: rgba(250,233,70,0.99); display: flex; justify-content: center; align-items: center; flex-direction: column; color: #d80c0c; margin: 0px; padding-left: 2px; padding-right: 2px }
+          .question { display: flex; justify-content: space-between; align-items: center; padding-right: 5px; border: 0.5px solid #ccc; }
+          .questionWithSubQuestion { display: flex; flex-direction: column; }
+          .sub-question{ padding-left: 30px; }
+          .id { width: 14px; border-right: 0.5px solid #ccc; margin:0px; padding: 5px; }
+          .question p { margin: 0; flex: 1; }
+          .options { display: flex; gap: 10px; min-width: 30px; justify-content: end; align-items: end; }
+          .option { font-weight: normal; color: #000; font-size: 18px; }
+          .options .selected { font-weight: bold; color: #d80c0c; }
+          .selected { font-weight: bold; color: #d80c0c; }
+        
+          .signature, .footer { display: flex; justify-content: space-between; align-items: center; border-top: 0.5px solid #000; }
+          .footerNote{ display: flex; flex-direction: column; padding-left: 2px; padding-right: 2px; }
+          .footer-note-item{ margin-bottom: 0px; }
+          
+          /*============= DONOR CARD =================*/
+        .container-donor-card {font-family: Arial, sans-serif;margin: 5px;display: flex;flex-direction: column;}
+        .header {display: flex;justify-content: space-between;align-items: center;border: 1px solid gray;margin-top: 10px;margin-bottom: 700px;}
+        .header .title {font-size: 28px !important;font-weight: bold;color: #d80c0c;}
+        .partOne {display: flex;flex-direction: row; align-items: center; gap: 10px;}
+        .partOne .section {display: flex;flex: 1;flex-direction: row; align-items: center; gap: 10px;}
+        .partOne_section__item{display: flex;flex-direction: column;flex: 1;align-items: start;justify-content: start;gap: 5px;}
+        .letters-group{display:flex;flex:1;justify-content: space-between;align-items: center;gap: 50px;}
+        .letter {font-size: 16px !important;font-weight: bold;}
+        .section {border: 1px solid gray;padding: 5px;}
+        .row {display: flex;align-items: center;margin-bottom: 8px;}
+        .label {flex: 1;}
+        .value {border-bottom: 1px solid gray;flex: 2;}
+        .checkbox-group {display: flex;gap: 20px;align-items: center;}
+        .checkbox-group input {margin-right: 5px;}
+        table {width: 100%;border-collapse: collapse;margin-top: 10px;}
+        table, th, td {border: 1px solid gray;}
+        th, td {padding: 5px;text-align: left;}
+      </style>
+    </head>
+    <body>
+      ${QuestionnaireHTML({ allQuestions, answers }) || ''}
+      <div class="page-break"></div>
+      ${DonorCardHTML() || ''}
+    </body>
+  </html>
+`;
 
     try {
-      await Print.printAsync({ html: htmlContent });
+      await Print.printAsync({
+        html: htmlContent,
+        orientation: 'portrait',
+        paperSize: 'A4',
+        twoSided: 'long',
+      });
       dispatch(resetSurvey());
       navigation.navigate('HomeScreen');
     } catch (error) {
