@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Alert } from 'react-native';
+import { View, Alert, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import * as Print from 'expo-print';
 import { useDispatch, useSelector } from 'react-redux';
@@ -31,6 +31,13 @@ import StepOne from './components/steps/StepOne';
 import QuestionnaireHTML from '../../components/questionnaireHTML/QuestionnaireHTML';
 import GoBackButton from '../../components/ui/goBack/GoBackButton';
 import { DonorCardHTML } from '../../components/ui/donorCard/DonorCard';
+import { ActivityIndicator } from 'react-native-paper';
+import {
+  alignItemsCenter,
+  flex1,
+  gapMediumSmall,
+  justifyCenter,
+} from '../../Style/Components/FlexAligments';
 
 /**
  * @name QuestionnaireScreen
@@ -43,6 +50,7 @@ const QuestionnaireScreen = () => {
   const dispatch = useDispatch();
   const answers = useSelector(selectAnswers);
   const currentStep = useSelector(selectCurrentStep);
+  const [isLoading, setIsLoading] = React.useState(false);
   const { panHandlers, resetTimer } = useInactivityTimer(navigation);
 
   const handleAnswer = (questionId, selectedAnswer) => {
@@ -114,6 +122,7 @@ const QuestionnaireScreen = () => {
 `;
 
     try {
+      setIsLoading(true);
       await Print.printAsync({
         html: htmlContent,
         orientation: 'portrait',
@@ -125,6 +134,8 @@ const QuestionnaireScreen = () => {
     } catch (error) {
       Alert.alert('Greška', 'Nije moguće direktno štampati.');
       console.error('Greška pri direktnom štampanju:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -134,38 +145,54 @@ const QuestionnaireScreen = () => {
 
   return (
     <View style={{ flex: 1, ...bgMain, padding: 24 }} {...panHandlers}>
-      <GoBackButton onPress={() => navigation.goBack()} />
-      {currentStep === 1 && (
-        <StepOne
-          questions={basicQuestions}
-          onNext={goNext}
-          answers={answers}
-          onAnswer={handleAnswer}
-          styles={styles}
-          resetTimer={resetTimer}
-        />
-      )}
-      {currentStep === 2 && (
-        <StepTwo
-          questions={womenQuestions}
-          onNext={goNext}
-          onBack={goBack}
-          answers={answers}
-          onAnswer={handleAnswer}
-          styles={styles}
-          resetTimer={resetTimer}
-        />
-      )}
-      {currentStep === 3 && (
-        <StepThree
-          questions={confirmQuestions}
-          onBack={goBack}
-          answers={answers}
-          onAnswer={handleAnswer}
-          styles={styles}
-          onSubmit={printAnketa}
-          resetTimer={resetTimer}
-        />
+      {isLoading ? (
+        <View
+          style={{
+            ...flex1,
+            ...justifyCenter,
+            ...alignItemsCenter,
+            ...gapMediumSmall,
+          }}
+        >
+          <ActivityIndicator size={80} />
+          <Text style={{ fontSize: 22 }}> Proces u toku......</Text>
+        </View>
+      ) : (
+        <>
+          <GoBackButton onPress={() => navigation.goBack()} />
+          {currentStep === 1 && (
+            <StepOne
+              questions={basicQuestions}
+              onNext={goNext}
+              answers={answers}
+              onAnswer={handleAnswer}
+              styles={styles}
+              resetTimer={resetTimer}
+            />
+          )}
+          {currentStep === 2 && (
+            <StepTwo
+              questions={womenQuestions}
+              onNext={goNext}
+              onBack={goBack}
+              answers={answers}
+              onAnswer={handleAnswer}
+              styles={styles}
+              resetTimer={resetTimer}
+            />
+          )}
+          {currentStep === 3 && (
+            <StepThree
+              questions={confirmQuestions}
+              onBack={goBack}
+              answers={answers}
+              onAnswer={handleAnswer}
+              styles={styles}
+              onSubmit={printAnketa}
+              resetTimer={resetTimer}
+            />
+          )}
+        </>
       )}
     </View>
   );

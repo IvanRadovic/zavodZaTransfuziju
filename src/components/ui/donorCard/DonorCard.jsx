@@ -10,7 +10,7 @@ export const DonorCardHTML = () => `
             </div>
         </div>
         <div class="title">KARTON DAVAOCA</div>
-        <div style="align-self: end; margin-bottom: 8px">Datum: _______________________</div>
+        <div style="align-self: end; margin-bottom: 8px">Datum: ______________________________________</div>
     </div>
     
     <div>
@@ -75,7 +75,7 @@ export const DonorCardHTML = () => `
                         <span class="label">Predložena količina:_________________________________</span>
                     </div>
                     <div class="row">
-                        <span class="label">Napomena:___________________________________________________________________________</span>
+                        <span class="label">Napomena:____________________________________________</span>
                     </div>
                 </div>
             </div>
