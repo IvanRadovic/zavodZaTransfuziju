@@ -3,14 +3,14 @@ export const DonorCardHTML = () => `
     
 <div class="container-donor-card">
     <div class="header">
-        <div style="display: flex; align-items: center; flex-direction: column; padding-left:8px !important; padding-right: 8px; !important;">
+        <div style="display: flex; align-items: center; flex-direction: column; margin-left:8px !important; margin-right: 8px; !important;">
             <img id="logo" src="${logoBase64}" alt="Logo" height="150" width="150" />
             <div style="display: flex; flex-direction: column; align-items: center;">
-                <p style="margin:0; font-size: 18px; font-weight: bold; text-align: center"> Zavod za transfuziju <br/> krvi crne gore</p>
+                <p style="margin:0; font-size: 18px; font-weight: bold; text-align: center"> Zavod za transfuziju <br/> krvi Crne Gore</p>
             </div>
         </div>
         <div class="title">KARTON DAVAOCA</div>
-        <div>Datum: _________________________________</div>
+        <div style="align-self: end; margin-bottom: 8px">Datum: _______________________</div>
     </div>
     
     <div>
@@ -32,7 +32,7 @@ export const DonorCardHTML = () => `
                     <label class="letter" style="color: black">0</label>
                 </div>
                 <div>
-                    Potpis tehničara: <span style="width: 100%">_____________________________</span>
+                    Potpis tehničara: <span style="width: 80%">_____________________________</span>
                 </div>
             </div>
         </div>
@@ -91,10 +91,10 @@ export const DonorCardHTML = () => `
                             <strong>Ne</strong>
                         </div>
                     </div>
-                    <div class="row" style="width: 100%; overflow: hidden">
+                    <div class="row" style="width: 90%; overflow: hidden">
                         <span class="label">Razlog odbijanja:_____________________________________________________</span>
                     </div>
-                    <div class="row" style="width: 100%; overflow: hidden">
+                    <div class="row" style="width: 90%; overflow: hidden">
                         <span class="label">Potpis ljekara:____________________________________________________</span>
                     </div>
                 </div>
@@ -135,11 +135,11 @@ export const DonorCardHTML = () => `
                 <span class="label">Završetak davanja: ________________________h ______________________ min</span>
             </div>
             <div>
-                <span class="label">Razlog prije vremenog prekidanja davanja: ______________________________________________________________________________________</span>
+                <span class="label">Razlog prije vremenog prekidanja davanja: ____________________________________________________________________</span>
             </div>
     
-            <div style="display:flex;align-items:end;width: 100%; justify-content: end">
-                <span>Potpis tehničara: ______________________________________________________________ </span>
+            <div style="display:flex;align-items:end;width: 0%; justify-content: end">
+                <span>Potpis tehničara: ______________________________________</span>
             </div>
         </div>
     </div>

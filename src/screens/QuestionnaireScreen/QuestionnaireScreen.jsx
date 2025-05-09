@@ -91,9 +91,9 @@ const QuestionnaireScreen = () => {
         .header .title {font-size: 28px !important;font-weight: bold;color: #d80c0c;}
         .partOne {display: flex;flex-direction: row; align-items: center; gap: 10px;}
         .partOne .section {display: flex;flex: 1;flex-direction: row; align-items: center; gap: 10px;}
-        .partOne_section__item{display: flex;flex-direction: column;flex: 1;align-items: start;justify-content: start;gap: 5px;}
+        .partOne_section__item{display: flex;flex-direction: column;flex: 1;align-items: start;justify-content: start;gap: 12px;}
         .letters-group{display:flex;flex:1;justify-content: space-between;align-items: center;gap: 50px;}
-        .letter {font-size: 16px !important;font-weight: bold;}
+        .letter {font-size: 18px !important;font-weight: bold;}
         .section {border: 1px solid gray;padding: 5px;}
         .row {display: flex;align-items: center;margin-bottom: 8px;}
         .label {flex: 1;}
