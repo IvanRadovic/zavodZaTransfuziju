@@ -27,7 +27,7 @@ export const DonorCardHTML = () => `
                 <strong>Određivanje krvne grupe na pločici:</strong>
                 <div class="letters-group">
                     <label class="letter" style="color: darkblue">A</label>
-                    <label class="letter"  style="color: darkred">B</label>
+                    <label class="letter"  style="color: #D14641">B</label>
                     <label class="letter" style="color: darkgoldenrod">AB</label>
                     <label class="letter" style="color: black">0</label>
                 </div>

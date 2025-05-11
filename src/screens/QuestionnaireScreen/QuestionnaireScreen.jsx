@@ -10,6 +10,7 @@ import { bgMain } from '../../Style/Components/BackgroundColors';
 
 /*========== HOOKS ============*/
 import { useInactivityTimer } from '../../hooks/useInactivityTimer';
+import { useToast } from '../../hooks/toastMessage';
 
 /*=========== CONSTANTS ============*/
 import { basicQuestions, confirmQuestions, womenQuestions } from './constants';
@@ -38,7 +39,6 @@ import {
   gapMediumSmall,
   justifyCenter,
 } from '../../Style/Components/FlexAligments';
-import AutoDisMissAlert from '../../components/layout/AutoDismissAlert/AutoDisMissAlert';
 
 /**
  * @name QuestionnaireScreen
@@ -51,6 +51,7 @@ const QuestionnaireScreen = () => {
   const dispatch = useDispatch();
   const answers = useSelector(selectAnswers);
   const currentStep = useSelector(selectCurrentStep);
+  const { showToast } = useToast();
   const [alertVisible, setAlertVisible] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
   const { panHandlers, resetTimer } = useInactivityTimer(navigation);
@@ -79,8 +80,8 @@ const QuestionnaireScreen = () => {
         .page-break {page-break-before: always !important;}
           body { font-family: Arial, sans-serif; font-size: 11px !important;  line-height: 1; }
          .container{ border: 0.5px solid gray; }
-          h5 { color: #d80c0c; text-align: center; margin:0; text-transform: uppercase; }
-          .questionHeader { background-color: rgba(250,233,70,0.99); display: flex; justify-content: center; align-items: center; flex-direction: column; color: #d80c0c; margin: 0px; padding-left: 2px; padding-right: 2px }
+          h5 { color: #D14641; text-align: center; margin:0; text-transform: uppercase; }
+          .questionHeader { background-color: #F6F4C9; display: flex; justify-content: center; align-items: center; flex-direction: column; color: #D14641; margin: 0px; padding-left: 2px; padding-right: 2px }
           .question { display: flex; justify-content: space-between; align-items: center; padding-right: 5px; border: 0.5px solid #ccc; }
           .questionWithSubQuestion { display: flex; flex-direction: column; }
           .sub-question{ padding-left: 30px; }
@@ -88,8 +89,8 @@ const QuestionnaireScreen = () => {
           .question p { margin: 0; flex: 1; }
           .options { display: flex; gap: 10px; min-width: 20px; justify-content: end; align-items: end; }
           .option { font-weight: normal; color: #000; font-size: 9px; }
-          .options .selected { font-weight: bold; color: #d80c0c; }
-          .selected { font-weight: bold; color: #d80c0c; }
+          .options .selected { font-weight: bold; color: #D14641; }
+          .selected { font-weight: bold; color: #D14641; }
         
           .signature, .footer { display: flex; justify-content: space-between; align-items: center; border-top: 0.5px solid #000; }
           .footerNote{ display: flex; flex-direction: column; padding-left: 2px; padding-right: 2px; }
@@ -98,7 +99,7 @@ const QuestionnaireScreen = () => {
           /*============= DONOR CARD =================*/
         .container-donor-card {font-family: Arial, sans-serif;margin: 5px;display: flex;flex-direction: column; font-size: 12px !important;}
         .header {display: flex;justify-content: space-between;align-items: center;border: 1px solid gray;margin-top: 10px;margin-bottom: 350px;}
-        .header .title {font-size: 20px !important;font-weight: bold;color: #d80c0c;}
+        .header .title {font-size: 20px !important;font-weight: bold;color: #D14641;}
         .partOne {display: flex;flex-direction: row; align-items: center; gap: 5px;}
         .partOne .section {display: flex;flex: 1;flex-direction: row; align-items: center; gap: 5px;}
         .partOne_section__item{display: flex;flex-direction: column;flex: 1;align-items: start;justify-content: start;gap: 5px;}
@@ -130,11 +131,12 @@ const QuestionnaireScreen = () => {
         paperSize: 'A4',
         twoSided: 'long',
       });
+      showToast({ type: 'success', message: 'Uspješno štampanje!' });
       navigation.navigate('HomeScreen');
       dispatch(resetSurvey());
     } catch (error) {
       Alert.alert('Greška', 'Nije moguće direktno štampati.');
-      console.error('Greška pri direktnom štampanju:', error);
+      showToast({ type: 'error', message: 'Greška pri direktnom štampanju.' });
     } finally {
       setIsLoading(false);
     }
