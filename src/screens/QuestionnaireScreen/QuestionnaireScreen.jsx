@@ -54,7 +54,7 @@ const QuestionnaireScreen = () => {
   const { showToast } = useToast();
   const [alertVisible, setAlertVisible] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
-  const { panHandlers, resetTimer } = useInactivityTimer(navigation);
+  const { panHandlers, handleActivity } = useInactivityTimer(navigation);
 
   const handleAnswer = useCallback((questionId, selectedAnswer) => {
     dispatch(setAnswer({ questionId, answer: selectedAnswer }));
@@ -170,7 +170,7 @@ const QuestionnaireScreen = () => {
               answers={answers}
               onAnswer={handleAnswer}
               styles={styles}
-              resetTimer={resetTimer}
+              resetTimer={handleActivity}
             />
           )}
           {currentStep === 2 && (
@@ -181,7 +181,7 @@ const QuestionnaireScreen = () => {
               answers={answers}
               onAnswer={handleAnswer}
               styles={styles}
-              resetTimer={resetTimer}
+              resetTimer={handleActivity}
             />
           )}
           {currentStep === 3 && (
@@ -192,7 +192,7 @@ const QuestionnaireScreen = () => {
               onAnswer={handleAnswer}
               styles={styles}
               onSubmit={printAnketa}
-              resetTimer={resetTimer}
+              resetTimer={handleActivity}
             />
           )}
         </>

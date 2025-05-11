@@ -23,7 +23,7 @@ import { useInactivityTimer } from '../../hooks/useInactivityTimer';
 const PlateletDonorsScreen = () => {
   const navigation = useNavigation();
   const [activeSections, setActiveSections] = useState([]);
-  const { panHandlers, resetTimer } = useInactivityTimer(navigation);
+  const { panHandlers, handleActivity } = useInactivityTimer(navigation);
 
   const toggleSection = (index) => {
     setActiveSections((prev) =>
@@ -34,7 +34,8 @@ const PlateletDonorsScreen = () => {
   return (
     <View {...panHandlers} style={styles.overlay}>
       <ScrollView
-        onScroll={resetTimer}
+        onScrollBeginDrag={handleActivity}
+        scrollEventThrottle={200}
         contentContainerStyle={styles.container}
       >
         <GoBackButton onPress={() => navigation.goBack()} />

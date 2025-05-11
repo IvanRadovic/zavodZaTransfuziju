@@ -138,7 +138,7 @@ export const DonorCardHTML = () => `
                 <span class="label">Razlog prije vremenog prekidanja davanja: ____________________________________________________________________</span>
             </div>
     
-            <div style="display:flex;align-items:end;width: 0%; justify-content: end">
+            <div style="display:flex;align-items:end; justify-content: end">
                 <span>Potpis tehničara: ______________________________________</span>
             </div>
         </div>

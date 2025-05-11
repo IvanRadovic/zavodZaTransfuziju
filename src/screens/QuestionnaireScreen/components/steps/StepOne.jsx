@@ -22,7 +22,6 @@ const StepOne = ({
   const [isLoading, setIsLoading] = useState(true);
 
   const handleNext = () => {
-    resetTimer();
     if (isValid) {
       onNext();
     } else {
@@ -60,6 +59,8 @@ const StepOne = ({
           data={questions}
           extraData={answers}
           onScroll={resetTimer}
+          onScrollBeginDrag={resetTimer} // Koristite onScrollBeginDrag umjesto onScroll
+          scrollEventThrottle={200} // Osigurajte dovoljno često osvježavanje
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => {
             return (

@@ -22,11 +22,13 @@ import { useInactivityTimer } from '../../hooks/useInactivityTimer';
  */
 const BloodDonorsScreen = () => {
   const navigation = useNavigation();
-  const { panHandlers, resetTimer } = useInactivityTimer(navigation);
+  const { panHandlers, resetTimer, handleActivity } =
+    useInactivityTimer(navigation);
   return (
     <View {...panHandlers} style={styles.container}>
       <ScrollView
-        onScroll={resetTimer}
+        onScrollBeginDrag={handleActivity}
+        scrollEventThrottle={200}
         contentContainerStyle={styles.scrollViewContainer}
       >
         <GoBackButton onPress={() => navigation.goBack()} />

@@ -51,6 +51,8 @@ const StepThree = ({
         contentContainerStyle={{ paddingHorizontal: 5 }}
         data={questions}
         extraData={answers}
+        onScrollBeginDrag={resetTimer} // Koristite onScrollBeginDrag umjesto onScroll
+        scrollEventThrottle={200} // Osigurajte dovoljno često osvježavanje
         onScroll={resetTimer}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
