@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { View, Alert, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import * as Print from 'expo-print';
@@ -38,6 +38,7 @@ import {
   gapMediumSmall,
   justifyCenter,
 } from '../../Style/Components/FlexAligments';
+import AutoDisMissAlert from '../../components/layout/AutoDismissAlert/AutoDisMissAlert';
 
 /**
  * @name QuestionnaireScreen
@@ -50,16 +51,17 @@ const QuestionnaireScreen = () => {
   const dispatch = useDispatch();
   const answers = useSelector(selectAnswers);
   const currentStep = useSelector(selectCurrentStep);
+  const [alertVisible, setAlertVisible] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
   const { panHandlers, resetTimer } = useInactivityTimer(navigation);
 
-  const handleAnswer = (questionId, selectedAnswer) => {
+  const handleAnswer = useCallback((questionId, selectedAnswer) => {
     dispatch(setAnswer({ questionId, answer: selectedAnswer }));
-  };
+  }, []);
 
   const goNext = () => dispatch(incrementStep());
   const goBack = () => dispatch(decrementStep());
-  const printAnketa = async () => {
+  const printAnketa = useCallback(async () => {
     console.log('This is the printAnketa function');
     const allQuestions = [
       ...basicQuestions,
@@ -73,19 +75,19 @@ const QuestionnaireScreen = () => {
     <head>
       <meta charset="utf-8" />
       <style>
-        @page {size: A4 portrait;margin: 5mm;}
+        @page {size: A4 portrait;margin: 3mm;}
         .page-break {page-break-before: always !important;}
-        body { font-family: Arial, sans-serif; font-size: 18px !important;  line-height: 1; }
+          body { font-family: Arial, sans-serif; font-size: 11px !important;  line-height: 1; }
          .container{ border: 0.5px solid gray; }
           h5 { color: #d80c0c; text-align: center; margin:0; text-transform: uppercase; }
           .questionHeader { background-color: rgba(250,233,70,0.99); display: flex; justify-content: center; align-items: center; flex-direction: column; color: #d80c0c; margin: 0px; padding-left: 2px; padding-right: 2px }
           .question { display: flex; justify-content: space-between; align-items: center; padding-right: 5px; border: 0.5px solid #ccc; }
           .questionWithSubQuestion { display: flex; flex-direction: column; }
           .sub-question{ padding-left: 30px; }
-          .id { width: 14px; border-right: 0.5px solid #ccc; margin:0px; padding: 5px; }
+          .id { width: 14px; border-right: 0.5px solid #ccc; margin:0; padding: 2px; }
           .question p { margin: 0; flex: 1; }
-          .options { display: flex; gap: 10px; min-width: 30px; justify-content: end; align-items: end; }
-          .option { font-weight: normal; color: #000; font-size: 18px; }
+          .options { display: flex; gap: 10px; min-width: 20px; justify-content: end; align-items: end; }
+          .option { font-weight: normal; color: #000; font-size: 9px; }
           .options .selected { font-weight: bold; color: #d80c0c; }
           .selected { font-weight: bold; color: #d80c0c; }
         
@@ -94,16 +96,16 @@ const QuestionnaireScreen = () => {
           .footer-note-item{ margin-bottom: 0px; }
           
           /*============= DONOR CARD =================*/
-        .container-donor-card {font-family: Arial, sans-serif;margin: 5px;display: flex;flex-direction: column;}
-        .header {display: flex;justify-content: space-between;align-items: center;border: 1px solid gray;margin-top: 10px;margin-bottom: 700px;}
-        .header .title {font-size: 28px !important;font-weight: bold;color: #d80c0c;}
-        .partOne {display: flex;flex-direction: row; align-items: center; gap: 10px;}
-        .partOne .section {display: flex;flex: 1;flex-direction: row; align-items: center; gap: 10px;}
-        .partOne_section__item{display: flex;flex-direction: column;flex: 1;align-items: start;justify-content: start;gap: 12px;}
+        .container-donor-card {font-family: Arial, sans-serif;margin: 5px;display: flex;flex-direction: column; font-size: 12px !important;}
+        .header {display: flex;justify-content: space-between;align-items: center;border: 1px solid gray;margin-top: 10px;margin-bottom: 350px;}
+        .header .title {font-size: 20px !important;font-weight: bold;color: #d80c0c;}
+        .partOne {display: flex;flex-direction: row; align-items: center; gap: 5px;}
+        .partOne .section {display: flex;flex: 1;flex-direction: row; align-items: center; gap: 5px;}
+        .partOne_section__item{display: flex;flex-direction: column;flex: 1;align-items: start;justify-content: start;gap: 5px;}
         .letters-group{display:flex;flex:1;justify-content: space-between;align-items: center;gap: 50px;}
-        .letter {font-size: 18px !important;font-weight: bold;}
+        .letter {font-size: 16px !important;font-weight: bold;}
         .section {border: 1px solid gray;padding: 5px;}
-        .row {display: flex;align-items: center;margin-bottom: 8px;}
+        .row {display: flex;align-items: center;margin-bottom: 3px;}
         .label {flex: 1;}
         .value {border-bottom: 1px solid gray;flex: 2;}
         .checkbox-group {display: flex;gap: 20px;align-items: center;}
@@ -120,7 +122,6 @@ const QuestionnaireScreen = () => {
     </body>
   </html>
 `;
-
     try {
       setIsLoading(true);
       await Print.printAsync({
@@ -129,15 +130,15 @@ const QuestionnaireScreen = () => {
         paperSize: 'A4',
         twoSided: 'long',
       });
-      dispatch(resetSurvey());
       navigation.navigate('HomeScreen');
+      dispatch(resetSurvey());
     } catch (error) {
       Alert.alert('Greška', 'Nije moguće direktno štampati.');
       console.error('Greška pri direktnom štampanju:', error);
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [answers, dispatch, navigation]);
 
   useEffect(() => {
     dispatch(resetSurvey());

@@ -4,13 +4,13 @@ export const DonorCardHTML = () => `
 <div class="container-donor-card">
     <div class="header">
         <div style="display: flex; align-items: center; flex-direction: column; margin-left:8px !important; margin-right: 8px; !important;">
-            <img id="logo" src="${logoBase64}" alt="Logo" height="150" width="150" />
+            <img id="logo" src="${logoBase64}" alt="Logo" height="110" width="110" />
             <div style="display: flex; flex-direction: column; align-items: center;">
-                <p style="margin:0; font-size: 18px; font-weight: bold; text-align: center"> Zavod za transfuziju <br/> krvi Crne Gore</p>
+                <p style="margin:0; font-size: 13px; font-weight: bold; text-align: center"> Zavod za transfuziju <br/> krvi Crne Gore</p>
             </div>
         </div>
         <div class="title">KARTON DAVAOCA</div>
-        <div style="align-self: end; margin-bottom: 8px">Datum: ______________________________________</div>
+        <div style="align-self: end; margin-bottom: 8px">Datum: _____________________________________________</div>
     </div>
     
     <div>
@@ -32,7 +32,7 @@ export const DonorCardHTML = () => `
                     <label class="letter" style="color: black">0</label>
                 </div>
                 <div>
-                    Potpis tehničara: <span style="width: 80%">_____________________________</span>
+                    Potpis tehničara: <span style="width: 90%">_____________________________</span>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@ export const DonorCardHTML = () => `
         <div style="display: flex;">
             <!--======================= LJEKARSKI PREGLED ===================-->
             <div style="display: flex; flex: 1; flex-direction: column;">
-                <strong style="margin-bottom: 10px">Ljekarski pregled:</strong>
+                <strong style="margin-bottom: 5px">Ljekarski pregled:</strong>
                 <div style="display: flex;">
                     <div class="row">
                         <span class="label">Pluća:________________</span>
@@ -202,7 +202,7 @@ export const DonorCardHTML = () => `
                                 <span class="label">Anti HIV 1/2:___________________</span>
                             </div>
                             <div class="row">
-                                <span class="label"> ,HBsAG:___________________</span>
+                                <span class="label"> ,HBsAG:_______</span>
                             </div>
                         </div>
                         <div style="display: flex;">
@@ -210,17 +210,17 @@ export const DonorCardHTML = () => `
                                 <span class="label">Anti HCV:___________________</span>
                             </div>
                             <div class="row">
-                                <span class="label"> ,TP-EIA:___________________</span>
+                                <span class="label"> ,TP-EIA:__________</span>
                             </div>
                         </div>
                     </div>
         
                     <div style="padding: 5px;">
                         <div class="row">
-                            <span class="label">Potpis tehničara:_________________________________________________</span>
+                            <span class="label">Potpis tehničara:__________________</span>
                         </div>
                         <div class="row">
-                            <span class="label">Potpis ljekara:______________________________________________________________________</span>
+                            <span class="label">Potpis ljekara:___________________________</span>
                         </div>
                     </div>
                 </div>

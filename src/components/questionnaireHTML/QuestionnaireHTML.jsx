@@ -13,9 +13,9 @@ const QuestionnaireHTML = ({ allQuestions, answers }) => {
       if (q.id === 20) {
         return `
           <div class="questionWithSubQuestion">
-            <div style="display: flex; align-items: center; gap: 5px; font-size: 13px; padding: 0px;">
+            <div style="display: flex; align-items: center; gap: 5px; font-size: 9px; padding: 0px;">
               <div class="id">${displayIndex++}</div>
-              <strong style="font-size: 18px !important;">Da li ste u proteklih 12 mjeseci:</strong>
+              <strong style="font-size: 11px !important;">Da li ste u proteklih 12 mjeseci:</strong>
             </div>
             <div class="sub-question">
               <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
@@ -47,9 +47,9 @@ const QuestionnaireHTML = ({ allQuestions, answers }) => {
       if (q.id === 24) {
         return `
         <div class="questionWithSubQuestion">
-          <div style="display: flex; align-items: center; gap: 5px; font-size: 13px; padding: 0px;">
+          <div style="display: flex; align-items: center; gap: 5px; font-size: 9px; padding: 0px;">
             <div class="id">${displayIndex++}</div>
-            <strong style="font-size: 18px !important;">Oblici rizičnih stanja i ponašanja:</strong>
+            <strong style="font-size: 11px !important;">Oblici rizičnih stanja i ponašanja:</strong>
           </div>
           <div class="sub-question">
             <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
@@ -95,9 +95,9 @@ const QuestionnaireHTML = ({ allQuestions, answers }) => {
       if (q.id === 29) {
         return `
         <div class="questionWithSubQuestion">
-          <div style="display: flex; align-items: center; gap: 5px; font-size: 13px; padding: 0px;">
+          <div style="display: flex; align-items: center; gap: 5px; font-size: 9px; padding: 0px;">
             <div class="id">${displayIndex++}</div>
-            <strong style="font-size: 18px !important;">Da li ste imali seksualne odnose tokom proteklih 6 mjeseci:</strong>
+            <strong style="font-size: 11px !important;">Da li ste imali seksualne odnose tokom proteklih 6 mjeseci:</strong>
           </div>
           <div class="sub-question">
             <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
@@ -148,11 +148,11 @@ const QuestionnaireHTML = ({ allQuestions, answers }) => {
       }
 
       if (q.id === 35) {
-        titleHTML = `<div class="questionHeader"><div style=" font-size:18px !important;margin-top: 4px; margin-bottom: 4px; font-weight: bold">ZA ŽENE</div></div>`;
+        titleHTML = `<div class="questionHeader"><div style=" font-size:11px !important;margin-top: 4px; margin-bottom: 4px; font-weight: bold">ZA ŽENE</div></div>`;
       } else if (q.id === 38) {
         titleHTML = `
           <div class="questionHeader">
-              <div style=" font-size:18px !important; margin-top: 4px; margin-bottom: 4px;font-weight: bold">SAGLASNOST DAVAOCA</div>
+              <div style=" font-size:11px !important; margin-top: 4px; margin-bottom: 4px;font-weight: bold">SAGLASNOST DAVAOCA</div>
           </div>
           <div style="align-self: start; background-color: white; border: 0.5px solid gray; padding-left: 5px; padding-top: 2px; padding-bottom: 2px">
               Popunio/la sam upitnik o davanju krvi ili komponente krvi i izjavljujem sledeće
@@ -163,9 +163,9 @@ const QuestionnaireHTML = ({ allQuestions, answers }) => {
       return `
         ${titleHTML}
         <div class="question">
-          <div style="display: flex; align-items: center; gap: 5px; font-size: 13px; padding: -5px;">
+          <div style="display: flex; align-items: center; gap: 5px; font-size: 9px; padding: -5px;">
             <div class="id" style="margin: 0px; padding: 2px">${displayIndex++}</div>
-            <div style="font-size: 18px !important;padding: 0px; margin: 0px">${q.question}</div>
+            <div style="font-size: 11px !important;padding: 0px; margin: 0px">${q.question}</div>
           </div>
           <div class="options">
             <span class="option ${selected === 'DA' ? 'selected' : ''}">Da</span>
@@ -179,8 +179,8 @@ const QuestionnaireHTML = ({ allQuestions, answers }) => {
   return `
         <div class="container">
           <div class="questionHeader">
-              <h4 style="color: #d80c0c; font-size: 22px; margin-bottom: 1px; margin-top:0px;font-weight: bold">POPUNJAVA DAVALAC</h4>
-              <p style="font-size:19px !important; margin: 0 10px; color: #d80c0c; text-align: start; font-style: italic">
+              <h4 style="color: #d80c0c; font-size: 14px; margin-bottom: 0px; margin-top:0px;font-weight: bold">POPUNJAVA DAVALAC</h4>
+              <p style="font-size:10px !important; margin: 0 10px; color: #d80c0c; text-align: start; font-style: italic">
                   Molimo Vas da pročitate upitnik i iskreno odgovorite na svako pitanje. Upitnik je važan zbog očuvanja Vašeg zdravlja i sigurnosti transfuzijskog liječenja bolesnika.
                   Vaši odgovori, kao i svi ostali podaci o Vama su potpuno povjerljivi (ljekarska tajna) i koristiće se samo za potrebe transfuziološke službe.
               </p>
@@ -195,10 +195,10 @@ const QuestionnaireHTML = ({ allQuestions, answers }) => {
 
           <div class="footer">
             <div class="footerNote">
-              <h6 style="margin: 5px; font-size: 16px !important; font-weight:bold">Napomena</h6>
-              <div class="footer-note-item"><input type="checkbox" style="transform: scale(0.8); width: 12px; height: 10px;" /> Odustao/la</div>
-              <div class="footer-note-item"><input type="checkbox" style="transform: scale(0.8); width: 12px; height: 10px;" /> Odobijanje davanja</div>
-              <div class="footer-note-item"><input type="checkbox" style="transform: scale(0.8); width: 12px; height: 10px;" /> Saglasnost povučena</div>
+              <h6 style="margin: 5px; font-size: 11px !important; font-weight:bold">Napomena</h6>
+              <div class="footer-note-item"><input type="checkbox" style="transform: scale(0.8); width: 11px; height: 10px;" /> Odustao/la</div>
+              <div class="footer-note-item"><input type="checkbox" style="transform: scale(0.8); width: 11px; height: 10px;" /> Odobijanje davanja</div>
+              <div class="footer-note-item"><input type="checkbox" style="transform: scale(0.8); width: 11px; height: 10px;" /> Saglasnost povučena</div>
             </div>
             <div style="display: flex; align-items: end;">
               <p>Potpis davaoca: _______________________________________</p>

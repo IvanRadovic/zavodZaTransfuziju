@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -16,9 +16,14 @@ import { styles } from './QuestionVieew.style';
  */
 const QuestionView = React.memo(
   ({ questionId, question, options, onSelect, selectedValue }) => {
-    const handlePress = (key) => {
-      onSelect(questionId, key);
-    };
+    const handlePress = useCallback(
+      (key) => {
+        requestAnimationFrame(() => {
+          onSelect(questionId, key);
+        });
+      },
+      [onSelect, questionId]
+    );
 
     return (
       <View style={styles.container}>
@@ -29,29 +34,12 @@ const QuestionView = React.memo(
             const isChecked = selectedValue === key;
 
             return (
-              <TouchableOpacity
+              <OptionButton
                 key={key}
+                isChecked={isChecked}
+                optionText={option}
                 onPress={() => handlePress(key)}
-                style={[
-                  styles.answerItem,
-                  {
-                    backgroundColor: isChecked ? '#fdd' : '#f5f5f5',
-                    borderColor: isChecked ? '#880808' : '#ccc',
-                  },
-                ]}
-              >
-                <MaterialCommunityIcons
-                  name={
-                    isChecked
-                      ? 'checkbox-marked-circle'
-                      : 'checkbox-blank-circle-outline'
-                  }
-                  size={24}
-                  color={isChecked ? '#880808' : '#888'}
-                  style={{ marginRight: 10 }}
-                />
-                <Text style={{ fontSize: 14 }}>{`${option}`}</Text>
-              </TouchableOpacity>
+              />
             );
           })}
         </View>
@@ -60,4 +48,28 @@ const QuestionView = React.memo(
   }
 );
 
+const OptionButton = React.memo(({ isChecked, optionText, onPress }) => {
+  return (
+    <TouchableOpacity
+      onPress={onPress}
+      style={[
+        styles.answerItem,
+        {
+          backgroundColor: isChecked ? '#fdd' : '#f5f5f5',
+          borderColor: isChecked ? '#880808' : '#ccc',
+        },
+      ]}
+    >
+      <MaterialCommunityIcons
+        name={
+          isChecked ? 'checkbox-marked-circle' : 'checkbox-blank-circle-outline'
+        }
+        size={24}
+        color={isChecked ? '#880808' : '#888'}
+        style={{ marginRight: 10 }}
+      />
+      <Text style={{ fontSize: 14 }}>{optionText}</Text>
+    </TouchableOpacity>
+  );
+});
 export default QuestionView;
