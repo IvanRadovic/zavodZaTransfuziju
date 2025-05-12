@@ -147,27 +147,6 @@ export const basicQuestions = [
   },
   {
     id: 25,
-    question: 'Da li mislite da je postojala mogućnost da se zarazite HIV-om?',
-    options: ['Da', 'Ne'],
-  },
-  {
-    id: 26,
-    question: 'Da li ste ikada koristili intravenske droge?',
-    options: ['Da', 'Ne'],
-  },
-  {
-    id: 27,
-    question: 'Da li ste ikada koristili preparate za bodi bilding? (steroidi)',
-    options: ['Da', 'Ne'],
-  },
-  {
-    id: 28,
-    question:
-      'Da li ste ikada za pružanje seksualnih usluga uzimali novac ili drogu?',
-    options: ['Da', 'Ne'],
-  },
-  {
-    id: 29,
     question:
       'Da li ste imali seksualne odnose tokom proteklih 6 mjeseci sa osobom koja je HIV pozitivna?',
     options: ['Da', 'Ne'],
@@ -182,52 +161,21 @@ export const basicQuestions = [
     questionSubF:
       'da li ste Vi imali analne seksualne odnosne tokom proteklih 6 mjeseic',
   },
-  {
-    id: 30,
-    question:
-      'Da li ste imali seksualne odnose tokom proteklih 6 mjeseci sa osobom koja ima hepaptitis (žuticu) B ili C?',
-    options: ['Da', 'Ne'],
-  },
-  {
-    id: 31,
-    question:
-      'Da li ste imali seksualne odnose tokom proteklih 6 mjeseci sa osobom koja je ikada za pružanje seksualnih usluga uzimala novac ili drogu?',
-    options: ['Da', 'Ne'],
-  },
-  {
-    id: 32,
-    question:
-      'Da li ste imali seksualne odnose tokom proteklih 6 mjeseci  sa osobom koja je ikada koristila intravenske droge?',
-    options: ['Da', 'Ne'],
-  },
-  {
-    id: 33,
-    question:
-      'Da li ste imali seksualne odnose tokom proteklih 6 mjeseci  sa osobom čije Vam dotadašnje seksualno ponašanje nije poznato?',
-    options: ['Da', 'Ne'],
-  },
-  {
-    id: 34,
-    question:
-      'Da li ste imali ste Vi imali analne seksualne odnose tokom prethodni 6 mjeseci?',
-    options: ['Da', 'Ne'],
-    title: 'endOfBasic',
-  },
 ];
 
 export const womenQuestions = [
   {
-    id: 35,
+    id: 26,
     question: 'Da li ste u drugom stanju?',
     options: ['Da', 'Ne'],
   },
   {
-    id: 36,
+    id: 27,
     question: 'Da li trenutno imate menstruaciju?',
     options: ['Da', 'Ne'],
   },
   {
-    id: 37,
+    id: 28,
     question:
       'Da li ste u poslednjih 6 mjeseci imali porođaj ili prekid trudnoće?',
     options: ['Da', 'Ne'],
@@ -237,63 +185,63 @@ export const womenQuestions = [
 
 export const confirmQuestions = [
   {
-    id: 38,
+    id: 29,
     question: 'Tvrdim da se nisam izlagao/la riziku od infekcije',
     options: ['Da', 'Ne'],
   },
   {
-    id: 39,
+    id: 30,
     question:
       'Obaviješten/a sam da će moja krv biti testirana na bolesti koje se prenose putem krvi i saglasan/a sam da budem pozavn/a na dodatno testiranje ukoliko bilo koji od testova bude pozitivan ili sumnjiv',
     options: ['Da', 'Ne'],
   },
   {
-    id: 40,
+    id: 31,
     question:
       'Obaviješten/a sam o mogućnosti da odustanem od davanja krvi ili komponente krvi prije otpočinjanja postupka, kao i o mogućnosti odbijanja davanja, odnosno mogućnosti povlačenja saglasnostii u bilo kojem trenutku u toku davanja',
     options: ['Da', 'Ne'],
   },
   {
-    id: 41,
+    id: 32,
     question:
       'Dajem pristanak i saglasan/a sam za nastavak postupka davanja krvi ili komponente krvi',
     options: ['Da', 'Ne'],
   },
   {
-    id: 42,
+    id: 33,
     question:
       'Upoznat/a sam sa uobičajnim rizicima i mogućim reakcijama tokom uzimanja krvi, kao i obimu testiranja krvi',
     options: ['Da', 'Ne'],
   },
   {
-    id: 43,
+    id: 34,
     question:
       'Upoznat/a sam sa mogućim posljedicama koje mogu nastati usljed davanja krvi ili komponente krvi',
     options: ['Da', 'Ne'],
   },
   {
-    id: 44,
+    id: 35,
     question: 'Obaviješten/a sam o zaštiti podataka o ličnosti',
     options: ['Da', 'Ne'],
   },
   {
-    id: 45,
+    id: 36,
     question:
       'Obaviješten/a sam o pravu na pristup podacima i pravu na ispravku podataka',
     options: ['Da', 'Ne'],
   },
   {
-    id: 46,
+    id: 37,
     question: 'Imao/la sam mogućnost da postavim pitanja',
     options: ['Da', 'Ne'],
   },
   {
-    id: 47,
+    id: 38,
     question: 'Dobio/la sam zadovoljavajući odgovor na postavljena pitanja',
     options: ['Da', 'Ne'],
   },
   {
-    id: 48,
+    id: 39,
     question:
       'Dao/la sam istinite informacije prema svom najbolje znanju i potvrđujem vjerodostojnost datih podataka i upoznat/a sam da je davanje netačnih podataka kažnjivo po zakonu',
     options: ['Da', 'Ne'],

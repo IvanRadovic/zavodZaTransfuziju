@@ -92,7 +92,7 @@ const QuestionnaireHTML = ({ allQuestions, answers }) => {
       `;
       }
 
-      if (q.id === 29) {
+      if (q.id === 25) {
         return `
         <div class="questionWithSubQuestion">
           <div style="display: flex; align-items: center; gap: 5px; font-size: 9px; padding: 0px;">
@@ -123,7 +123,7 @@ const QuestionnaireHTML = ({ allQuestions, answers }) => {
             </div>
             <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
               <div>d) ${q.questionSubD}</div>
-              <div class="options"style="padding-right: 5px"> >
+              <div class="options" style="padding-right: 5px"> >
                 <span class="option ${answers[32] === 'DA' ? 'selected' : ''}">Da</span>
                 <span class="option ${answers[32] === 'NE' ? 'selected' : ''}">Ne</span>
               </div>
@@ -149,7 +149,7 @@ const QuestionnaireHTML = ({ allQuestions, answers }) => {
 
       if (q.id === 35) {
         titleHTML = `<div class="questionHeader"><div style=" font-size:11px !important;margin-top: 4px; margin-bottom: 4px; font-weight: bold">ZA ŽENE</div></div>`;
-      } else if (q.id === 38) {
+      } else if (q.id === 29) {
         titleHTML = `
           <div class="questionHeader">
               <div style=" font-size:11px !important; margin-top: 4px; margin-bottom: 4px;font-weight: bold">SAGLASNOST DAVAOCA</div>
@@ -164,7 +164,6 @@ const QuestionnaireHTML = ({ allQuestions, answers }) => {
         ${titleHTML}
         <div class="question">
           <div style="display: flex; align-items: center; gap: 5px; font-size: 9px; padding: -5px;">
-            <div class="id" style="margin: 0px; padding: 2px">${displayIndex++}</div>
             <div style="font-size: 11px !important;padding: 0px; margin: 0px">${q.question}</div>
           </div>
           <div class="options">
