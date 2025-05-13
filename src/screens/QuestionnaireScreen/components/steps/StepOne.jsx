@@ -9,6 +9,7 @@ import { flex1 } from '../../../../Style/Components/FlexAligments';
 import Header from '../header/Header';
 import QuestionView from '../../../../components/layout/QuestionView/QuestionView';
 import { ActivityIndicator } from 'react-native-paper';
+import { textCenter } from '../../../../Style/Components/FontAdjust';
 
 const StepOne = ({
   questions,
@@ -33,7 +34,7 @@ const StepOne = ({
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 500);
+    const timer = setTimeout(() => setIsLoading(false), 700);
     return () => clearTimeout(timer);
   }, []);
 
@@ -63,14 +64,48 @@ const StepOne = ({
           scrollEventThrottle={200} // Osigurajte dovoljno često osvježavanje
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => {
+            const { meta } = item;
+
+            const renderSubtitle = () => {
+              if (!meta?.isFirstInGroup) return null;
+
+              if (meta.parentQuestionId === 20) {
+                return (
+                  <Text style={[styles.parentQuestion, { ...textCenter }]}>
+                    Da li ste u proteklih 12 mjeseci:
+                  </Text>
+                );
+              }
+
+              if (meta.parentQuestionId === 22) {
+                return (
+                  <Text style={[styles.parentQuestion, { ...textCenter }]}>
+                    Oblici rizičnih stanja i ponašanja:
+                  </Text>
+                );
+              }
+
+              if (meta.parentQuestionId === 23) {
+                return (
+                  <Text style={[styles.parentQuestion, { ...textCenter }]}>
+                    Da li ste imali seksualne odnose tokom proteklih 6 mjeseci:
+                  </Text>
+                );
+              }
+              return null;
+            };
+
             return (
-              <QuestionView
-                questionId={item.id}
-                question={item.question}
-                options={item.options}
-                onSelect={onAnswer}
-                selectedValue={answers[String(item.id)]}
-              />
+              <>
+                {renderSubtitle()}
+                <QuestionView
+                  questionId={item.id}
+                  question={item.question}
+                  options={item.options}
+                  onSelect={onAnswer}
+                  selectedValue={answers[String(item.id)]}
+                />
+              </>
             );
           }}
           ListEmptyComponent={() => (

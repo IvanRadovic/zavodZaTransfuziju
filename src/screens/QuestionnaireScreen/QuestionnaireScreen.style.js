@@ -15,6 +15,27 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     elevation: 3,
   },
+
+  parentQuestion: {
+    fontSize: 19,
+    fontWeight: 'bold',
+    color: '#1E1E1E', // tamna siva, elegantna
+    backgroundColor: '#fdfdfd', // svijetla pozadina da istakne naslov
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderRadius: 8,
+    marginTop: 20,
+    marginBottom: 10,
+    textAlign: 'center',
+    borderLeftWidth: 4,
+    borderLeftColor: '#880808', // tamnocrvena kao akcentna boja
+    elevation: 1, // za Android shadow
+    shadowColor: '#000', // za iOS shadow
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+  },
+
   title: {
     fontSize: 20,
     fontWeight: '700',

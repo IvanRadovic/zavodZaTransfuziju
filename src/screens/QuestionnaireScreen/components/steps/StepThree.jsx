@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, FlatList, TouchableOpacity, Text, Alert } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -14,6 +14,7 @@ import {
 /*========== COMPONENTS ============*/
 import ConfirmClientText from '../confirmClientText/ConfirmClientText';
 import QuestionView from '../../../../components/layout/QuestionView/QuestionView';
+import { ActivityIndicator } from 'react-native-paper';
 
 const StepThree = ({
   questions,
@@ -25,11 +26,17 @@ const StepThree = ({
   resetTimer,
 }) => {
   const isValid = questions.every((q) => answers[q.id]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleBack = () => {
     resetTimer();
     onBack();
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 700);
+    return () => clearTimeout(timer);
+  }, []);
 
   const submitSurvey = () => {
     resetTimer();
@@ -42,6 +49,14 @@ const StepThree = ({
       );
     }
   };
+
+  if (isLoading) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large" color="#880808" />
+      </View>
+    );
+  }
 
   return (
     <View style={{ flex: 1, paddingHorizontal: 50 }}>

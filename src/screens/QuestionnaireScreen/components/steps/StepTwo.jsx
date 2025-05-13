@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FlashList } from '@shopify/flash-list';
 import { View, TouchableOpacity, Text, Alert } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -14,6 +14,7 @@ import {
 /*========== COMPONENTS ============*/
 import QuestionView from '../../../../components/layout/QuestionView/QuestionView';
 import WomenHeader from '../womenHeader/WomenHeader';
+import { ActivityIndicator } from 'react-native-paper';
 
 const StepTwo = ({
   questions,
@@ -25,6 +26,7 @@ const StepTwo = ({
   resetTimer,
 }) => {
   const isValid = questions.every((q) => answers[q.id]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const onGoBack = () => {
     resetTimer();
@@ -35,6 +37,19 @@ const StepTwo = ({
     resetTimer();
     onNext();
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 700);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large" color="#880808" />
+      </View>
+    );
+  }
 
   return (
     <>

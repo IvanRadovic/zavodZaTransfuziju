@@ -7,6 +7,15 @@ import { useDispatch, useSelector } from 'react-redux';
 /*=========== STYLES ============*/
 import { styles } from './QuestionnaireScreen.style';
 import { bgMain } from '../../Style/Components/BackgroundColors';
+import {
+  alignItemsCenter,
+  flex1,
+  gapMediumSmall,
+  justifyCenter,
+} from '../../Style/Components/FlexAligments';
+
+/*=========== FUNCTIONS ============*/
+import { getFlatQuestions } from './utils';
 
 /*========== HOOKS ============*/
 import { useInactivityTimer } from '../../hooks/useInactivityTimer';
@@ -33,12 +42,6 @@ import QuestionnaireHTML from '../../components/questionnaireHTML/QuestionnaireH
 import GoBackButton from '../../components/ui/goBack/GoBackButton';
 import { DonorCardHTML } from '../../components/ui/donorCard/DonorCard';
 import { ActivityIndicator } from 'react-native-paper';
-import {
-  alignItemsCenter,
-  flex1,
-  gapMediumSmall,
-  justifyCenter,
-} from '../../Style/Components/FlexAligments';
 
 /**
  * @name QuestionnaireScreen
@@ -78,21 +81,24 @@ const QuestionnaireScreen = () => {
       <style>
         @page {size: A4 portrait;margin: 3mm;}
         .page-break {page-break-before: always !important;}
-          body { font-family: Arial, sans-serif; font-size: 11px !important;  line-height: 1; }
-         .container{ border: 0.5px solid gray; }
-          h5 { color: #D14641; text-align: center; margin:0; text-transform: uppercase; }
-          .questionHeader { background-color: #F6F4C9; display: flex; justify-content: center; align-items: center; flex-direction: column; color: #D14641; margin: 0px; padding-left: 2px; padding-right: 2px }
-          .question { display: flex; justify-content: space-between; align-items: center; padding-right: 5px; border: 0.5px solid #ccc; }
+          body { font-family: Arial, sans-serif; font-size: 13px !important;  line-height: 1;, box-sizing: border-box; }
+         .container{ border: 0.5px solid gray; box-sizing: border-box; width:100% }
+           h5 { color: #D14641; text-align: center; margin:0; text-transform: uppercase; }
+          .questionHeader {width: 100%; background-color: #F6F4C9; display: flex; justify-content: center; align-items: stretch; flex-direction: column; color: #D14641; margin: 0px; border-right:0.5px solid gray !important;}
+          .question { display: flex; justify-content: space-between; align-items: center; padding-right: 5px; border: 0.5px solid gray !important; }
           .questionWithSubQuestion { display: flex; flex-direction: column; }
-          .sub-question{ padding-left: 30px; }
-          .id { width: 14px; border-right: 0.5px solid #ccc; margin:0; padding: 2px; }
+          .questionWithSubQuestion > *:first-child {
+            border-bottom: 0.5px solid gray;
+          }
+          .sub-question{ padding-left: 30px; padding-top:1px  }
+          .id { width: 11px; border-right: 0.5px solid gray; margin:0; padding: 2px; }
           .question p { margin: 0; flex: 1; }
           .options { display: flex; gap: 10px; min-width: 20px; justify-content: end; align-items: end; }
-          .option { font-weight: normal; color: #000; font-size: 9px; }
+          .option { font-weight: normal; color: #000; font-size: 13px; }
           .options .selected { font-weight: bold; color: #D14641; }
           .selected { font-weight: bold; color: #D14641; }
         
-          .signature, .footer { display: flex; justify-content: space-between; align-items: center; border-top: 0.5px solid #000; }
+          .signature, .footer { display: flex; justify-content: space-between; align-items: center; border-top: 0.5px solid gray; }
           .footerNote{ display: flex; flex-direction: column; padding-left: 2px; padding-right: 2px; }
           .footer-note-item{ margin-bottom: 0px; }
           
@@ -165,7 +171,7 @@ const QuestionnaireScreen = () => {
           <GoBackButton onPress={() => navigation.goBack()} />
           {currentStep === 1 && (
             <StepOne
-              questions={basicQuestions}
+              questions={getFlatQuestions(basicQuestions)}
               onNext={goNext}
               answers={answers}
               onAnswer={handleAnswer}

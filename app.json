@@ -18,7 +18,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/logoNew.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.ivek1996.Zavod"
