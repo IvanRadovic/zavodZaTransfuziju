@@ -86,10 +86,10 @@ const QuestionnaireHTML = ({ allQuestions, answers }) => {
 
           <div class="footer">
             <div class="footerNote">
-              <h6 style="margin: 5px; font-size: 13px !important; font-weight:bold">Napomena</h6>
-              <div class="footer-note-item"><input type="checkbox" style="transform: scale(0.8); width: 11px; height: 10px;" /> Odustao/la</div>
-              <div class="footer-note-item"><input type="checkbox" style="transform: scale(0.8); width: 11px; height: 10px;" /> Odobijanje davanja</div>
-              <div class="footer-note-item"><input type="checkbox" style="transform: scale(0.8); width: 11px; height: 10px;" /> Saglasnost povučena</div>
+              <h6 style="margin: 3px; font-size: 13px !important; font-weight:bold">Napomena</h6>
+              <div class="footer-note-item"><input type="checkbox" style="transform: scale(0.8); width: 11px; height: 8px;" /> Odustao/la</div>
+              <div class="footer-note-item"><input type="checkbox" style="transform: scale(0.8); width: 11px; height: 8px;" /> Odobijanje davanja</div>
+              <div class="footer-note-item"><input type="checkbox" style="transform: scale(0.8); width: 11px; height: 8px;" /> Saglasnost povučena</div>
             </div>
             <div style="display: flex; align-items: end;">
               <p>Potpis davaoca: _______________________________________</p>

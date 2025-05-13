@@ -81,7 +81,7 @@ const QuestionnaireScreen = () => {
       <style>
         @page {size: A4 portrait;margin: 3mm;}
         .page-break {page-break-before: always !important;}
-          body { font-family: Arial, sans-serif; font-size: 13px !important;  line-height: 1;, box-sizing: border-box; }
+          body { font-family: Arial, sans-serif; font-size: 12px !important;  line-height: 1;, box-sizing: border-box; }
          .container{ border: 0.5px solid gray; box-sizing: border-box; width:100% }
            h5 { color: #D14641; text-align: center; margin:0; text-transform: uppercase; }
           .questionHeader {width: 100%; background-color: #F6F4C9; display: flex; justify-content: center; align-items: stretch; flex-direction: column; color: #D14641; margin: 0px; border-right:0.5px solid gray !important;}
@@ -94,9 +94,8 @@ const QuestionnaireScreen = () => {
           .id { width: 11px; border-right: 0.5px solid gray; margin:0; padding: 2px; }
           .question p { margin: 0; flex: 1; }
           .options { display: flex; gap: 10px; min-width: 20px; justify-content: end; align-items: end; }
-          .option { font-weight: normal; color: #000; font-size: 13px; }
-          .options .selected { font-weight: bold; color: #D14641; }
-          .selected { font-weight: bold; color: #D14641; }
+          .option {  color: #000; font-size: 11px !important; }
+          .options .selected { border: 0.5px solid gray; border-radius: 50px; padding: 0 2px}
         
           .signature, .footer { display: flex; justify-content: space-between; align-items: center; border-top: 0.5px solid gray; }
           .footerNote{ display: flex; flex-direction: column; padding-left: 2px; padding-right: 2px; }
